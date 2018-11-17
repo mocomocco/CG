@@ -20,16 +20,39 @@ public class MyScene {
 	static MyCaterpillar caterpillar6=null;
 	static MyCaterpillar caterpillar7=null;
 	static MyCaterpillar caterpillar8=null;
-	
+	static MyCaterpillar[] caterpillars;
 	/**
 	 * Initialization
 	 */
 
 	private static void robotinit(){
+		caterpillars = new MyCaterpillar[16];
 		robot1 = new MyRobot();
 		/*robot1.setColor(0.0, 1.0, 0.0);
 		robot1.setVelocity(5);
 		robot1.setTransform(1.5);*/
+		for (int i=0 ;i<16;i++){
+			caterpillars[i]=new MyCaterpillar();
+			caterpillars[i].id=i;
+			caterpillars[i].setSyokiy(0);
+			caterpillars[i].setSyokiz(0.5);
+			System.out.println(i);
+
+			if (i<5){//0,1,2,3,4
+				caterpillars[i].setr(0);
+				caterpillars[i].setSyokix(1.3-0.35*i);
+			}else if (i<=7){//5,6,7
+				caterpillars[i].setr(350*(i-4));
+				caterpillars[i].setSyokix(-0.1);
+			}else if (i<=12){//8,9,10,11,12
+				caterpillars[i].setr(1800);
+				caterpillars[i].setSyokix(-0.1+0.35*(i-8));
+			}else if(i<=15){//13,14,15
+				caterpillars[i].setr(1800+350*(i-12));
+				caterpillars[i].setSyokix(1.3);
+			}
+		}
+		/*
 		caterpillar1=new MyCaterpillar();
 		caterpillar1.setSyokix(-0.1);
 		caterpillar1.setSyokiy(0);
@@ -74,7 +97,7 @@ public class MyScene {
 		caterpillar8.setSyokiz(0.5);
 		caterpillar8.setr(1050);
 		caterpillar8.id=7;
-
+*/
 	}
 
 	public static void init() {
@@ -103,6 +126,12 @@ public class MyScene {
 			robot1.draw(drawable);
 		gl.glPopMatrix();
 
+		for (int i=0;i<16;i++){
+			gl.glPushMatrix();
+			if(caterpillars[i] != null)
+				caterpillars[i].draw(drawable);
+			gl.glPopMatrix();
+		}/*
 		gl.glPushMatrix();
 		if(caterpillar1 != null)
 			caterpillar1.draw(drawable);
@@ -134,7 +163,7 @@ public class MyScene {
 		gl.glPushMatrix();
 		if(caterpillar8 != null)
 			caterpillar8.draw(drawable);
-		gl.glPopMatrix();
+		gl.glPopMatrix();*/
 	}
 
 	public static void draw(GLAutoDrawable drawable) {

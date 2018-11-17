@@ -117,21 +117,21 @@ public class MyCaterpillar {
      * Calculate the movement (rotation angle)
      */
     public void calculateMovement() {
-        //System.out.println("r:"+r+" t : "+transformx+" dx : "+dx);
+        System.out.println("id;"+id+"r:"+r+" t : "+transformx+" dx : "+dx);
         if (r<1800 & transformx<=-0.1){
             r+=velocity;
             System.out.println("1");
         }
-        else if (r==1800 & transformx <1.5) {
+        else if (r==1800 & transformx <1.3) {
             transformx+=velocity/1000.0;
             System.out.println("2 ");
-        }else if (1800<=r & transformx>=1.5){
+        }else if (1800<=r & transformx>=1.3){
             r+=velocity;
             System.out.println("3 ");
             if (r>3600)r=0;
         }else if(r<1800 & transformx >-0.1) {
             transformx-= velocity/1000.0;
-            System.out.println("5r : "+r+" t : "+transformx);
+            //System.out.println("5r : "+r+" t : "+transformx);
         }
         //transform-=velocity/1000.0;
         /*if(r<1800)r+=velocity;

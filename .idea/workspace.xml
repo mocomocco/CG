@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="209fc5ff-7cae-48b2-8ed0-733cba249379" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyCar.class" afterPath="$PROJECT_DIR$/MyCar.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyCaterpillar.class" afterPath="$PROJECT_DIR$/MyCaterpillar.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyRobot.class" afterPath="$PROJECT_DIR$/MyRobot.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyScene.class" afterPath="$PROJECT_DIR$/MyScene.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyCar.java" afterPath="$PROJECT_DIR$/MyCar.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyCaterpillar.java" afterPath="$PROJECT_DIR$/MyCaterpillar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyRobot.java" afterPath="$PROJECT_DIR$/MyRobot.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyScene.java" afterPath="$PROJECT_DIR$/MyScene.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -24,11 +19,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MyScene.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MyScene.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MyScene.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-591">
-              <caret line="32" column="38" lean-forward="false" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
+            <state relative-caret-position="195">
+              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="43" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -39,7 +34,7 @@
       <file leaf-file-name="MyRobot.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MyRobot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
+            <state relative-caret-position="2333">
               <caret line="216" column="17" lean-forward="false" selection-start-line="216" selection-start-column="17" selection-end-line="216" selection-end-column="17" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -50,20 +45,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyCaterpillar.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MyCaterpillar.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MyCaterpillar.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-499">
-              <caret line="156" column="25" lean-forward="false" selection-start-line="156" selection-start-column="25" selection-end-line="156" selection-end-column="25" />
+            <state relative-caret-position="377">
+              <caret line="179" column="0" lean-forward="false" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="method#setColor#0;class#MyCaterpillar#0" expanded="false" />
-                <element signature="e#1984#1985#0" expanded="true" />
-                <element signature="e#2014#2015#0" expanded="true" />
-                <element signature="e#2056#2057#0" expanded="true" />
-                <element signature="e#2086#2087#0" expanded="true" />
-                <element signature="e#2128#2129#0" expanded="true" />
-                <element signature="e#2158#2159#0" expanded="true" />
+                <element signature="e#2454#2455#0" expanded="true" />
+                <element signature="e#2475#2476#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -859,9 +850,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/MyCaterpillar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="179" column="0" lean-forward="false" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="method#setColor#0;class#MyCaterpillar#0" expanded="false" />
+            <element signature="e#2454#2455#0" expanded="true" />
+            <element signature="e#2475#2476#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/MyRobot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
+        <state relative-caret-position="2333">
           <caret line="216" column="17" lean-forward="false" selection-start-line="216" selection-start-column="17" selection-end-line="216" selection-end-column="17" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
@@ -873,27 +877,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MyScene.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-591">
-          <caret line="32" column="38" lean-forward="false" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
+        <state relative-caret-position="195">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="43" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyCaterpillar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-499">
-          <caret line="156" column="25" lean-forward="false" selection-start-line="156" selection-start-column="25" selection-end-line="156" selection-end-column="25" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="method#setColor#0;class#MyCaterpillar#0" expanded="false" />
-            <element signature="e#1984#1985#0" expanded="true" />
-            <element signature="e#2014#2015#0" expanded="true" />
-            <element signature="e#2056#2057#0" expanded="true" />
-            <element signature="e#2086#2087#0" expanded="true" />
-            <element signature="e#2128#2129#0" expanded="true" />
-            <element signature="e#2158#2159#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -15,6 +15,9 @@ public class MyCaterpillar {
     float silver[] = { 0.5f, 0.5f, 0.5f, 1.0f };
     float green[] = {0.0f,1.0f,0.0f,1.0f};
     float white[] = {1.0f,1.0f,1.0f,1.0f};
+    float red[] = {1.0f,0.0f,0.0f,1.0f};
+    float blue[] = {0.0f,0.0f,1.0f,1.0f};
+    float orange[] ={0.5f,0.5f,0.0f,1.0f};
 
     double vertex_tirepart[][] = {
             { -0.1, 0.0, -0.5 },
@@ -63,8 +66,13 @@ public class MyCaterpillar {
 
     // Distance from the center of the orbit
     double transformx = 0;
+    double dx = 0;
     double transformy = 0;
     double transformz = 0;
+    double syokix=0;
+    double syokiy=0;
+    double syokiz=0;
+
     int id = 0;
 
 
@@ -90,39 +98,44 @@ public class MyCaterpillar {
     /**
      * Set transform
      */
-    public void setTransformx(double t) {
-        transformx = t;
+    public void setSyokix(double t) {
+        syokix = t;
+        transformx=syokix;
     }
-    public void setTransformy(double t) {
-        transformy = t;
+    public void setSyokiy(double t) {
+        syokiy = t;
+        transformy=syokiy;
     }
-    public void setTransformz(double t) {
-        transformz = t;
+    public void setSyokiz(double t) {
+        syokiz = t;
+        transformz=syokiz;
     }
-
+    public void setr(int t) {
+        r = t;
+    }
     /**
      * Calculate the movement (rotation angle)
      */
     public void calculateMovement() {
-        /*System.out.println("r:"+r+" t : "+transformx);
-        if (r<1800 & transformx == 0.0){
+        //System.out.println("r:"+r+" t : "+transformx+" dx : "+dx);
+        if (r<1800 & transformx<=-0.1){
             r+=velocity;
             System.out.println("1");
         }
-        else if (r==1800 & transformx >-1.5) {
-            transformx-=velocity/1000.0;
+        else if (r==1800 & transformx <1.5) {
+            transformx+=velocity/1000.0;
             System.out.println("2 ");
-        }else if (1800<=r & transformx <= -1.5){
+        }else if (1800<=r & transformx>=1.5){
             r+=velocity;
             System.out.println("3 ");
             if (r>3600)r=0;
-        }else if(r<1800 & transformx <0.0) {
-            /ransformx+= velocity/1000.0;
+        }else if(r<1800 & transformx >-0.1) {
+            transformx-= velocity/1000.0;
             System.out.println("5r : "+r+" t : "+transformx);
-        }*/
+        }
         //transform-=velocity/1000.0;
-        r+=velocity;
-        if(r>3600)r=0;
+        /*if(r<1800)r+=velocity;
+        if(r>3600)r=0;*/
     }
 
 
@@ -152,11 +165,19 @@ public class MyCaterpillar {
                 gl.glBegin(GL2.GL_POLYGON);
                 gl.glNormal3dv(normal[j], 0);
                 gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
-                if(id==0){
+                if(id % 5==0){
                 gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, green, 0);}
-                if (id==1){
+                if (id % 5==1){
                     gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, white, 0);
                 }
+                if(id % 5==2){
+                    gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, red, 0);}
+                if (id % 5==3){
+                    gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, blue, 0);
+                }
+                if(id % 5==4){
+                    gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, orange, 0);}
+
                 for (int i = 0; i < 4; ++i) {//頂点を決める
                     double[] tyoutenlist = {0,0,0};
                     tyoutenlist[0]=vertex_tirepart[face[j][i]][0];
@@ -206,11 +227,13 @@ public class MyCaterpillar {
         // Set reflection coefficients
         //caterpillar1.draw(drawable);
         //if (id==1 & r<1350 & r>450){
+
+        /* { -0.1, 0.0, -0.5 },*/
         gl.glTranslated(transformx,transformy,transformz);
-        gl.glRotated(((double)r * 0.1), 0.0, .0, 1.0);
-        gl.glTranslated(-0.5,0.0,0.0);
+        gl.glRotated(((double)r * 0.1), 0.0, 0.0, 1.0);
+        gl.glTranslated(-0.0,0.25,0.0);
         draw_foot(drawable,gl,glut);
-        gl.glTranslated(0.5,0.0,0.0);//}
+        gl.glTranslated(0.0,-0.25,0.0);//}
 
         /*if (id==2 & r>2250 & r< 3150){
             gl.glTranslated(transformx,transformy,transformz);

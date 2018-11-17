@@ -14,6 +14,12 @@ public class MyScene {
 	static MyRobot robot1=null;
 	static MyCaterpillar caterpillar1=null;
 	static MyCaterpillar caterpillar2=null;
+	static MyCaterpillar caterpillar3=null;
+	static MyCaterpillar caterpillar4=null;
+	static MyCaterpillar caterpillar5=null;
+	static MyCaterpillar caterpillar6=null;
+	static MyCaterpillar caterpillar7=null;
+	static MyCaterpillar caterpillar8=null;
 	
 	/**
 	 * Initialization
@@ -25,15 +31,50 @@ public class MyScene {
 		robot1.setVelocity(5);
 		robot1.setTransform(1.5);*/
 		caterpillar1=new MyCaterpillar();
-		caterpillar1.setTransformx(-0.1);
-		caterpillar1.setTransformy(0);
-		caterpillar1.setTransformz(0.5);
+		caterpillar1.setSyokix(-0.1);
+		caterpillar1.setSyokiy(0);
+		caterpillar1.setSyokiz(0.5);
+		caterpillar1.setr(0);
 		caterpillar1.id=0;
 		caterpillar2=new MyCaterpillar();
-		caterpillar2.setTransformx(1.6);
-		caterpillar2.setTransformy(0);
-		caterpillar2.setTransformz(0.5);
+		caterpillar2.setSyokix(0.25);
+		caterpillar2.setSyokiy(0);
+		caterpillar2.setSyokiz(0.5);
 		caterpillar2.id=1;
+		caterpillar3=new MyCaterpillar();
+		caterpillar3.setSyokix(0.6);
+		caterpillar3.setSyokiy(0);
+		caterpillar3.setSyokiz(0.5);
+		caterpillar3.id=2;
+		caterpillar4=new MyCaterpillar();
+		caterpillar4.setSyokix(0.95);
+		caterpillar4.setSyokiy(0);
+		caterpillar4.setSyokiz(0.5);
+		caterpillar4.id=3;
+		caterpillar5=new MyCaterpillar();
+		caterpillar5.setSyokix(1.3);
+		caterpillar5.setSyokiy(0);
+		caterpillar5.setSyokiz(0.5);
+		caterpillar5.id=4;
+		caterpillar6=new MyCaterpillar();
+		caterpillar6.setSyokix(-0.1);
+		caterpillar6.setSyokiy(0);
+		caterpillar6.setSyokiz(0.5);
+		caterpillar6.setr(350);
+		caterpillar6.id=5;
+		caterpillar7=new MyCaterpillar();
+		caterpillar7.setSyokix(-0.1);
+		caterpillar7.setSyokiy(0);
+		caterpillar7.setSyokiz(0.5);
+		caterpillar7.setr(700);
+		caterpillar7.id=6;
+		caterpillar8=new MyCaterpillar();
+		caterpillar8.setSyokix(-0.1);
+		caterpillar8.setSyokiy(0);
+		caterpillar8.setSyokiz(0.5);
+		caterpillar8.setr(1050);
+		caterpillar8.id=7;
+
 	}
 
 	public static void init() {
@@ -69,6 +110,30 @@ public class MyScene {
 		gl.glPushMatrix();
 		if(caterpillar2 != null)
 			caterpillar2.draw(drawable);
+		gl.glPopMatrix();
+		gl.glPushMatrix();
+		if(caterpillar3 != null)
+			caterpillar3.draw(drawable);
+		gl.glPopMatrix();
+		gl.glPushMatrix();
+		if(caterpillar4 != null)
+			caterpillar4.draw(drawable);
+		gl.glPopMatrix();
+		gl.glPushMatrix();
+		if(caterpillar5 != null)
+			caterpillar5.draw(drawable);
+		gl.glPopMatrix();
+		gl.glPushMatrix();
+		if(caterpillar6 != null)
+			caterpillar6.draw(drawable);
+		gl.glPopMatrix();
+		gl.glPushMatrix();
+		if(caterpillar7 != null)
+			caterpillar7.draw(drawable);
+		gl.glPopMatrix();
+		gl.glPushMatrix();
+		if(caterpillar8 != null)
+			caterpillar8.draw(drawable);
 		gl.glPopMatrix();
 	}
 

@@ -15,6 +15,7 @@ public class MyRobot {
     float silver[] = { 0.5f, 0.5f, 0.5f, 1.0f };
     float green[] = {0.0f,1.0f,0.0f,1.0f};
 
+
     // Positions of vertices
     double vertex1[][] = {
             { -0.5, 0.0,  0.0 },
@@ -217,8 +218,8 @@ public class MyRobot {
         gl.glTranslated(0.0, 0.0, transform);
 
         // Set reflection coefficients
-
-        draw_foot(drawable,gl,glut);
+        //caterpillar1.draw(drawable);
+        //draw_foot(drawable,gl,glut);
         /* Draw a box
         for (int j = 0; j < 6; ++j) {
             gl.glBegin(GL2.GL_POLYGON);

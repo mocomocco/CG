@@ -123,7 +123,6 @@ public class MyCar {
 		gl.glRotated(((double)r * 0.1), 0.0, 1.0, 0.0);
 		//ベクトル(0.0,0.0,transform)平行移動
 		gl.glTranslated(0.0, 0.0, transform);
-		 
 		// Set reflection coefficients
 		gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, color, 0);
 		gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);

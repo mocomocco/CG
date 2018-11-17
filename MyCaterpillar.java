@@ -14,8 +14,7 @@ public class MyCaterpillar {
     float black[] = {0.0f,0.0f,0.0f,1.0f};
     float silver[] = { 0.5f, 0.5f, 0.5f, 1.0f };
     float green[] = {0.0f,1.0f,0.0f,1.0f};
-
-    // Positions of vertices
+    float white[] = {1.0f,1.0f,1.0f,1.0f};
 
     double vertex_tirepart[][] = {
             { -0.1, 0.0, -0.5 },
@@ -39,7 +38,6 @@ public class MyCaterpillar {
     };
 
     // Normal vector of vertices
-    // Normal vector of vertices
     double normal[][] = {
             { 0.0, 0.0, 1.0 },
             {-1.0, 0.0, 0.0 },
@@ -48,6 +46,7 @@ public class MyCaterpillar {
             { 0.0, 1.0, 0.0 },
             { 0.0,-1.0, 0.0 }
     };
+
     double tire_housen[][]={
             {0.0,0.0,1.0},
             {0.0,0.0,-1.0},
@@ -63,7 +62,12 @@ public class MyCaterpillar {
     int velocity = 5;
 
     // Distance from the center of the orbit
-    double transform = 1.0;
+    double transformx = 0;
+    double transformy = 0;
+    double transformz = 0;
+    int id = 0;
+
+
 
 
     /**
@@ -86,18 +90,39 @@ public class MyCaterpillar {
     /**
      * Set transform
      */
-    public void setTransform(double t) {
-        transform = t;
+    public void setTransformx(double t) {
+        transformx = t;
+    }
+    public void setTransformy(double t) {
+        transformy = t;
+    }
+    public void setTransformz(double t) {
+        transformz = t;
     }
 
     /**
      * Calculate the movement (rotation angle)
      */
     public void calculateMovement() {
-        r += velocity;
-        if (r >= 3600) {
-            r = 0;
+        /*System.out.println("r:"+r+" t : "+transformx);
+        if (r<1800 & transformx == 0.0){
+            r+=velocity;
+            System.out.println("1");
         }
+        else if (r==1800 & transformx >-1.5) {
+            transformx-=velocity/1000.0;
+            System.out.println("2 ");
+        }else if (1800<=r & transformx <= -1.5){
+            r+=velocity;
+            System.out.println("3 ");
+            if (r>3600)r=0;
+        }else if(r<1800 & transformx <0.0) {
+            /ransformx+= velocity/1000.0;
+            System.out.println("5r : "+r+" t : "+transformx);
+        }*/
+        //transform-=velocity/1000.0;
+        r+=velocity;
+        if(r>3600)r=0;
     }
 
 
@@ -109,7 +134,6 @@ public class MyCaterpillar {
     }
 
     private void draw_tire_part(GLAutoDrawable drawable, GL2 gl, GLUT glut){
-        for(int h=0;h<5;++h) {
             for (int j = 0; j < 6; ++j) {//面を一個作る
                 //ポリゴンの描写を始めるよ
                 gl.glBegin(GL2.GL_POLYGON);
@@ -119,7 +143,7 @@ public class MyCaterpillar {
                 gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, black, 0);
                 for (int i = 0; i < 4; ++i) {//頂点を決める
                     double[] tyoutenlist={0,0,0};
-                    tyoutenlist[0]=vertex_tirepart[face[j][i]][0]+0.25*h;
+                    tyoutenlist[0]=vertex_tirepart[face[j][i]][0];
                     tyoutenlist[1]=vertex_tirepart[face[j][i]][1];
                     tyoutenlist[2]=vertex_tirepart[face[j][i]][2];
                     gl.glVertex3dv(tyoutenlist, 0);
@@ -128,17 +152,21 @@ public class MyCaterpillar {
                 gl.glBegin(GL2.GL_POLYGON);
                 gl.glNormal3dv(normal[j], 0);
                 gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
-                gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, green, 0);
+                if(id==0){
+                gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, green, 0);}
+                if (id==1){
+                    gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, white, 0);
+                }
                 for (int i = 0; i < 4; ++i) {//頂点を決める
-                    double[] tyoutenlist = vertex_tirepart[face[j][i]];
-                    tyoutenlist[0]=vertex_tirepart[face[j][i]][0]+0.25*h;
+                    double[] tyoutenlist = {0,0,0};
+                    tyoutenlist[0]=vertex_tirepart[face[j][i]][0];
                     tyoutenlist[1]=vertex_tirepart[face[j][i]][1]+0.02;
                     tyoutenlist[2]=vertex_tirepart[face[j][i]][2];
                     gl.glVertex3dv(tyoutenlist, 0);
                 }
                 gl.glEnd();
             }
-        }
+
     }
 
 
@@ -151,6 +179,11 @@ public class MyCaterpillar {
     }
 
     private void draw_foot(GLAutoDrawable drawable, GL2 gl, GLUT glut){
+        gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, color, 0);
+        gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
+
+        gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, color, 0);
+        gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
         draw_tires(drawable,gl,glut);
         draw_tire_core(drawable,gl,glut);
     }
@@ -162,12 +195,69 @@ public class MyCaterpillar {
     public void draw(GLAutoDrawable drawable) {
         GL2 gl = drawable.getGL().getGL2();
         GLUT glut = new GLUT();
-        gl.glTranslated(0.0, 0.0, transform);
-
+        // Set rotation and transformation
+        //ベクトル(0.0,1.0,0.0)を中心に(r*0.1)'回転
+        //gl.glTranslated( 0.1, 0.0, 0.0 );
+        //gl.glRotated(((double)r * 0.1), 0.0, 0.0, 1.0);
+        //ベクトル(0.0,0.0,transform)平行移動
+        //gl.glTranslated(0.0, transform, 0.0);
+        //gl.glTranslated(0.0, transform,0.0);
+        //gl.glTranslated(transform, 0.0, 0.0);
         // Set reflection coefficients
-
+        //caterpillar1.draw(drawable);
+        //if (id==1 & r<1350 & r>450){
+        gl.glTranslated(transformx,transformy,transformz);
+        gl.glRotated(((double)r * 0.1), 0.0, .0, 1.0);
+        gl.glTranslated(-0.5,0.0,0.0);
         draw_foot(drawable,gl,glut);
+        gl.glTranslated(0.5,0.0,0.0);//}
 
+        /*if (id==2 & r>2250 & r< 3150){
+            gl.glTranslated(transformx,transformy,transformz);
+            gl.glRotated(((double)r * 0.1), 0.0, .0, 1.0);
+            gl.glTranslated(-0.5,0.0,0.0);
+            draw_foot(drawable,gl,glut);
+            gl.glTranslated(0.5,0.0,0.0);}*/
+        //gl.glTranslated( id *1.0, 0.0, 0.0 );
+        /* Draw a box
+        for (int j = 0; j < 6; ++j) {
+            gl.glBegin(GL2.GL_POLYGON);
+            gl.glNormal3dv(normal[j], 0);
+            for (int i = 0; i < 4; ++i) {
+                gl.glVertex3dv(vertex1[face[j][i]], 0);
+            }
+            gl.glEnd();
+        }
+*/
+        /* Draw another box
+        for (int j = 0; j < 6; ++j) {
+            gl.glBegin(GL2.GL_POLYGON);
+            gl.glNormal3dv(normal[j], 0);
+            for (int i = 0; i < 4; ++i) {
+                gl.glVertex3dv(vertex2[face[j][i]], 0);
+            }
+            gl.glEnd();
+        }
+
+        //
+        gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, silver, 0);
+        gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
+
+        // Draw four spheres
+        gl.glTranslated(0.2, 0.0, 0.05);
+        glut.glutSolidSphere(0.1, 30, 20);
+        //半 径 0.1 の球を、経度方向に 30 分割、緯度方向に 20 分割してできる多面体で近似して描画す る
+
+        gl.glTranslated(-0.4, 0.0, 0.0);
+        glut.glutSolidSphere(0.1, 30, 20);
+
+        gl.glTranslated(0.0, 0.0, 0.4);
+        glut.glutSolidSphere(0.1, 30, 20);
+
+        gl.glTranslated(0.4, 0.0, 0.0);
+        glut.glutSolidSphere(0.1, 30, 20);*/
+
+        // Calculate the movement (rotation angle)
         calculateMovement();
     }
 

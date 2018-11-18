@@ -7,7 +7,7 @@ import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.util.gl2.GLUT;
 
 
-public class MyCaterpillar {
+public class MyCaterpillarCore {
 
     // Colors
     float color[] = { 0.0f, 1.0f, 0.0f, 1.0f };
@@ -150,30 +150,30 @@ public class MyCaterpillar {
     }
 
     private void draw_tire_part(GLAutoDrawable drawable, GL2 gl, GLUT glut){
-            for (int j = 0; j < 6; ++j) {//面を一個作る
-                //ポリゴンの描写を始めるよ
-                gl.glBegin(GL2.GL_POLYGON);
-                //変数 normal[j] に設定されている 3 個の実数を、j 番目の四角形の法線ベクトルとして指定するよ
-                gl.glNormal3dv(normal[j], 0);
-                gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
-                gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, black, 0);
-                for (int i = 0; i < 4; ++i) {//頂点を決める
-                    double[] tyoutenlist={0,0,0};
-                    tyoutenlist[0]=vertex_tirepart[face[j][i]][0];
-                    tyoutenlist[1]=vertex_tirepart[face[j][i]][1];
-                    tyoutenlist[2]=vertex_tirepart[face[j][i]][2];
-                    gl.glVertex3dv(tyoutenlist, 0);
-                }
-                gl.glEnd();
-                gl.glBegin(GL2.GL_POLYGON);
-                gl.glNormal3dv(normal[j], 0);
-                gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
-                if(id==1) {
-                    gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, green, 0);
-                }
-                if(id==2) {
-                    gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, red, 0);
-                }
+        for (int j = 0; j < 6; ++j) {//面を一個作る
+            //ポリゴンの描写を始めるよ
+            gl.glBegin(GL2.GL_POLYGON);
+            //変数 normal[j] に設定されている 3 個の実数を、j 番目の四角形の法線ベクトルとして指定するよ
+            gl.glNormal3dv(normal[j], 0);
+            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
+            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, black, 0);
+            for (int i = 0; i < 4; ++i) {//頂点を決める
+                double[] tyoutenlist={0,0,0};
+                tyoutenlist[0]=vertex_tirepart[face[j][i]][0];
+                tyoutenlist[1]=vertex_tirepart[face[j][i]][1];
+                tyoutenlist[2]=vertex_tirepart[face[j][i]][2];
+                gl.glVertex3dv(tyoutenlist, 0);
+            }
+            gl.glEnd();
+            gl.glBegin(GL2.GL_POLYGON);
+            gl.glNormal3dv(normal[j], 0);
+            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
+            if(id==1) {
+                gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, green, 0);
+            }
+            if(id==2) {
+                gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, red, 0);
+            }
                 /*
                 if(id % 5==0){
                 gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, green, 0);}
@@ -188,15 +188,15 @@ public class MyCaterpillar {
                 if(id % 5==4){
                     gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, orange, 0);}
 */
-                for (int i = 0; i < 4; ++i) {//頂点を決める
-                    double[] tyoutenlist = {0,0,0};
-                    tyoutenlist[0]=vertex_tirepart[face[j][i]][0];
-                    tyoutenlist[1]=vertex_tirepart[face[j][i]][1]+0.02;
-                    tyoutenlist[2]=vertex_tirepart[face[j][i]][2];
-                    gl.glVertex3dv(tyoutenlist, 0);
-                }
-                gl.glEnd();
+            for (int i = 0; i < 4; ++i) {//頂点を決める
+                double[] tyoutenlist = {0,0,0};
+                tyoutenlist[0]=vertex_tirepart[face[j][i]][0];
+                tyoutenlist[1]=vertex_tirepart[face[j][i]][1]+0.02;
+                tyoutenlist[2]=vertex_tirepart[face[j][i]][2];
+                gl.glVertex3dv(tyoutenlist, 0);
             }
+            gl.glEnd();
+        }
 
     }
 

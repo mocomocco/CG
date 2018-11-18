@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="209fc5ff-7cae-48b2-8ed0-733cba249379" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MyCaterpillarCore.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyCaterpillar.class" afterPath="$PROJECT_DIR$/MyCaterpillar.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyScene.class" afterPath="$PROJECT_DIR$/MyScene.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -19,11 +20,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MyScene.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MyScene.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MyScene.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="97">
-              <caret line="28" column="43" lean-forward="false" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
+            <state relative-caret-position="1444">
+              <caret line="100" column="29" lean-forward="false" selection-start-line="100" selection-start-column="29" selection-end-line="100" selection-end-column="29" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -45,16 +46,39 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyCaterpillar.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MyCaterpillar.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MyCaterpillar.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="127" column="43" lean-forward="false" selection-start-line="127" selection-start-column="43" selection-end-line="127" selection-end-column="43" />
+            <state relative-caret-position="210">
+              <caret line="260" column="28" lean-forward="false" selection-start-line="260" selection-start-column="28" selection-end-line="260" selection-end-column="28" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="method#setColor#0;class#MyCaterpillar#0" expanded="false" />
-                <element signature="e#2454#2455#0" expanded="true" />
-                <element signature="e#2475#2476#0" expanded="true" />
+                <element signature="e#2482#2483#0" expanded="true" />
+                <element signature="e#2503#2504#0" expanded="true" />
+                <element signature="e#2538#2539#0" expanded="true" />
+                <element signature="e#2558#2559#0" expanded="true" />
+                <element signature="e#2595#2596#0" expanded="true" />
+                <element signature="e#2617#2618#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MyCaterpillarCore.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MyCaterpillarCore.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="9" column="30" lean-forward="false" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="method#setColor#0;class#MyCaterpillarCore#0" expanded="false" />
+                <element signature="e#2486#2487#0" expanded="true" />
+                <element signature="e#2507#2508#0" expanded="true" />
+                <element signature="e#2542#2543#0" expanded="true" />
+                <element signature="e#2562#2563#0" expanded="true" />
+                <element signature="e#2599#2600#0" expanded="true" />
+                <element signature="e#2621#2622#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -122,8 +146,9 @@
         <option value="$PROJECT_DIR$/CgKeyListener.java" />
         <option value="$PROJECT_DIR$/MyRobot.java" />
         <option value="$PROJECT_DIR$/MyCar.java" />
-        <option value="$PROJECT_DIR$/MyCaterpillar.java" />
         <option value="$PROJECT_DIR$/MyScene.java" />
+        <option value="$PROJECT_DIR$/MyCaterpillar.java" />
+        <option value="$PROJECT_DIR$/MyCaterpillarCore.java" />
       </list>
     </option>
   </component>
@@ -862,25 +887,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyCaterpillar.java">
+    <entry file="file://$PROJECT_DIR$/MyScene.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="127" column="43" lean-forward="false" selection-start-line="127" selection-start-column="43" selection-end-line="127" selection-end-column="43" />
+        <state relative-caret-position="1444">
+          <caret line="100" column="29" lean-forward="false" selection-start-line="100" selection-start-column="29" selection-end-line="100" selection-end-column="29" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="method#setColor#0;class#MyCaterpillar#0" expanded="false" />
-            <element signature="e#2454#2455#0" expanded="true" />
-            <element signature="e#2475#2476#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyScene.java">
+    <entry file="file://$PROJECT_DIR$/MyCaterpillarCore.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="28" column="43" lean-forward="false" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
+        <state relative-caret-position="105">
+          <caret line="9" column="30" lean-forward="false" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+            <element signature="method#setColor#0;class#MyCaterpillarCore#0" expanded="false" />
+            <element signature="e#2486#2487#0" expanded="true" />
+            <element signature="e#2507#2508#0" expanded="true" />
+            <element signature="e#2542#2543#0" expanded="true" />
+            <element signature="e#2562#2563#0" expanded="true" />
+            <element signature="e#2599#2600#0" expanded="true" />
+            <element signature="e#2621#2622#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyCaterpillar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="260" column="28" lean-forward="false" selection-start-line="260" selection-start-column="28" selection-end-line="260" selection-end-column="28" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="method#setColor#0;class#MyCaterpillar#0" expanded="false" />
+            <element signature="e#2482#2483#0" expanded="true" />
+            <element signature="e#2503#2504#0" expanded="true" />
+            <element signature="e#2538#2539#0" expanded="true" />
+            <element signature="e#2558#2559#0" expanded="true" />
+            <element signature="e#2595#2596#0" expanded="true" />
+            <element signature="e#2617#2618#0" expanded="true" />
           </folding>
         </state>
       </provider>

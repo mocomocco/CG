@@ -36,7 +36,7 @@ public class CgMain extends JApplet {
 		container.add(panel, BorderLayout.CENTER);
 		
 		// Listener of keyboard events
-		CgKeyListener mkl = new CgKeyListener(canvas);
+		CgKeyListener mkl = new CgKeyListener(canvas,animator);
 		canvas.addKeyListener(mkl);
 		glc.addKeyListener(mkl);
 		
@@ -66,7 +66,7 @@ public class CgMain extends JApplet {
 	 * The main method
 	 */
 	public static void main(String[] args) {
-		JFrame frame = new JFrame("I love CG!!!");
+		JFrame frame = new JFrame("I love Robot!!!");
 		frame.setSize(width, height);
 		CgMain cgmain = new CgMain(); 
 

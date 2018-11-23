@@ -4,14 +4,22 @@
 
 
 import java.awt.event.*;
+import com.jogamp.opengl.util.Animator;
 
 public class CgKeyListener implements KeyListener {
 	CgCanvas canvas;
-	
-	
-	public CgKeyListener(CgCanvas c) {
+	Animator animator;
+
+	public CgKeyListener(CgCanvas c, Animator a) {
 		canvas = c;
+		animator = a;
 	}
+	
+	
+	/*public CgKeyListener(CgCanvas c) {
+		canvas = c;
+	}*/
+
 	
 	
    	/**
@@ -31,6 +39,25 @@ public class CgKeyListener implements KeyListener {
 			MyScene.resetMovement();
 			canvas.display();
 			break;
+
+
+		// "b": turn
+		case KeyEvent.VK_B:
+		MyScene.back();
+		canvas.display();
+		//animator.start();
+		break;
+
+		case KeyEvent.VK_RIGHT:
+		MyScene.turn(2);
+		canvas.display();
+		break;
+
+		case KeyEvent.VK_LEFT:
+			MyScene.turn(-2);
+			canvas.display();
+			break;
+
 		}
 		
 	}
@@ -39,7 +66,7 @@ public class CgKeyListener implements KeyListener {
 	 * Called when a key is released
 	 */
 	public void keyReleased(KeyEvent e) {/*長押し終了*/
-
+		//animator.stop();
 	}
 
 	/**

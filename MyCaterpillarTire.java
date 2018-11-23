@@ -1,5 +1,5 @@
 /**
- * Model of a CaterpillarCore
+ * Model of a CaterpillarTire
  */
 
 import com.jogamp.opengl.GL2;
@@ -8,7 +8,7 @@ import com.jogamp.opengl.util.gl2.GLUT;
 
 
 
-public class MyCaterpillarCore {
+public class MyCaterpillarTire {
 
     // Colors
     float color[] = { 0.0f, 1.0f, 0.0f, 1.0f };
@@ -75,8 +75,8 @@ public class MyCaterpillarCore {
     double syokiz=0;
 
     double dx = 0;
-    double dy = 0;
-    double dz = 0;
+    double dy=0;
+    double dz=0;
     int dr=0;
 
     double vmae =0;
@@ -132,14 +132,6 @@ public class MyCaterpillarCore {
         dx=t;
     }
 
-    public void setdy(double t) {
-        dy=t;
-    }
-
-    public void setdz(double t) {
-        dz=t;
-    }
-
     public void setvmae(double t) {
         vmae=t;
     }
@@ -149,7 +141,6 @@ public class MyCaterpillarCore {
     public void calculateMovement() {
         dx+=vmae*Math.cos(Math.toRadians(dr*0.1));
         dz+=vmae*Math.sin(Math.toRadians(dr*0.1));
-        //System.out.println(Math.toRadians(dr*0.1) +" " + Math.cos(Math.toRadians(dr*0.1)) +" "+ Math.sin(Math.toRadians(dr*0.1)));
     }
 
 
@@ -170,80 +161,49 @@ public class MyCaterpillarCore {
         dr+=right;
     }
 
-    private void setlist(double[] list1,double x,double y,double z){
-        list1[0]=x;
-        list1[1]=y;
-        list1[2]=z;
-    }
-    double[] tyoutenlist = {0,0,0};
     void Cylinder(double radius, double height, int sides,GLAutoDrawable drawable, GL2 gl, GLUT glut){
         int i;
         double step = 3.141592 *2.0/(double)sides;
         double t;
 
+        gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
+        gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, black, 0);
         /*上*/
-       // gl.glNormal3d(0.0,1.0,0.0);
         gl.glNormal3d(0.0,1.0,0.0);
-        //gl.glBegin(gl.GL_TRIANGLE_FAN);
-        gl.glBegin(GL2.GL_POLYGON);
-       // gl.glVertex3d(0.0, height, 0.0);
-        /*for(i=0; i<=sides; i++){
+        gl.glBegin(gl.GL_TRIANGLE_FAN);
+        gl.glVertex3d(0.0, height, 0.0);
+        for(i=0; i<=sides; i++){
             t = step*(double)i;
-            setlist(tyoutenlist,radius*Math.sin(t), height, radius*Math.cos(t));
-            gl.glVertex3dv(tyoutenlist,0);
+            gl.glVertex3d(radius*Math.sin(t), height, radius*Math.cos(t));
         }
-        gl.glEnd();*/
-
+        gl.glEnd();
 
         /*下*/
 
         gl.glNormal3d(0.0,-1.0,0.0);
-        //gl.glBegin(gl.GL_TRIANGLE_
-        // FAN);
-        gl.glBegin(GL2.GL_POLYGON);
-        //gl.glVertex3dv(0.0, -height, 0.0);
-        gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
-        gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, red, 0);
+        gl.glBegin(gl.GL_TRIANGLE_FAN);
+        gl.glVertex3d(0.0, -height, 0.0);
         for(i=0; i<=sides; i++){
             t = step*(double)i;
-            setlist(tyoutenlist,radius*Math.sin(t), -height, radius*Math.cos(t));
-            gl.glVertex3dv(tyoutenlist,0);
+            gl.glVertex3d(radius*Math.sin(t), -height, radius*Math.cos(t));
         }
         gl.glEnd();
-        gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
-        gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, white, 0);
+
         /*横*/
-        //gl.glBegin(gl.GL_QUAD_STRIP);
+        gl.glBegin(gl.GL_QUAD_STRIP);
         for(i=0; i<=sides; i++){
-            gl.glBegin(GL2.GL_POLYGON);
             double theta = step*(double)i;
             double x =Math.sin(theta);
             double z = Math.cos(theta);
-            double nextx=Math.sin(theta + step);
-
-            double nextz = Math.cos(theta+ step);
-            double normallist ;
-
-            
-            setlist(tyoutenlist,x,0.0,z);
-            gl.glNormal3dv(tyoutenlist,0);
-
-            setlist(tyoutenlist,radius*x, height, radius*z);
-            gl.glVertex3dv(tyoutenlist,0);
-            setlist(tyoutenlist,radius*x, -height, radius*z);
-            gl.glVertex3dv(tyoutenlist,0);
-            setlist(tyoutenlist,radius*nextx, -height, radius*nextz);
-            gl.glVertex3dv(tyoutenlist,0);
-            setlist(tyoutenlist,radius*nextx, height, radius*nextz);
-            gl.glVertex3dv(tyoutenlist,0);
-
-            //gl.glVertex3d(radius*nextx, -height, radius*z);
-            gl.glEnd();
+            gl.glNormal3d(x,0.0,z);
+            gl.glVertex3d(radius*x, height, radius*z);
+            gl.glVertex3d(radius*x, -height, radius*z);
         }
-
+        gl.glEnd();
 
 
     }
+
 
 
     /**
@@ -256,14 +216,34 @@ public class MyCaterpillarCore {
         gl.glTranslated(dx,dy,dz);
         gl.glRotated(((double)dr*-0.1),0.0,1.0,0.0);
         gl.glTranslated(transformx,transformy,transformz);
-
+        //gl.glRotated(((double)r * 0.1), 0.0, 0.0, 1.0);
         gl.glTranslated(-0.0,0.25,0.0);
-        // draw_foot(drawable,gl,glut);
+       // draw_foot(drawable,gl,glut);
         gl.glRotated(90, 1.0, 0.0, 0.0);
+            //Cylinder(0.27, 0.15, sides,drawable, gl,glut);
 
-        gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
-        gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, white, 0);
-        Cylinder(0.05, 1.0, sides,drawable, gl,glut);
+
+
+
+
+        for (int j = 0; j < 6; ++j) {//面を一個作る
+            //ポリゴンの描写を始めるよ
+            gl.glBegin(GL2.GL_POLYGON);
+            //変数 normal[j] に設定されている 3 個の実数を、j 番目の四角形の法線ベクトルとして指定するよ
+            gl.glNormal3dv(normal[j], 0);
+            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
+            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, black, 0);
+            for (int i = 0; i < 4; ++i) {//頂点を決める
+                double[] tyoutenlist={0,0,0};
+                tyoutenlist[0]=vertex_tirepart[face[j][i]][0];
+                tyoutenlist[1]=vertex_tirepart[face[j][i]][1];
+                tyoutenlist[2]=vertex_tirepart[face[j][i]][2];
+                gl.glVertex3dv(tyoutenlist, 0);
+            }
+            gl.glEnd();
+        }
+
+
 
         //gl.glRotated(-900, 1.0, 0.0, 0.0);
         gl.glTranslated(0.0,-0.25,0.0);//}

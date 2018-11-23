@@ -1,5 +1,5 @@
 /**
- * Model of a Caterpillar
+ * Model of a CaterpillarRenketsububun
  */
 
 import com.jogamp.opengl.GL2;
@@ -7,7 +7,7 @@ import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.util.gl2.GLUT;
 
 
-public class MyCaterpillar {
+public class MyCaterpillarRenketsu {
 
     // Colors
     float color[] = { 0.0f, 1.0f, 0.0f, 1.0f };
@@ -68,19 +68,12 @@ public class MyCaterpillar {
     double transformx = 0;
     double transformy = 0;
     double transformz = 0;
-
     double syokix=0;
     double syokiy=0;
     double syokiz=0;
     int syokir=0;
-
     int isBack=0;
-
     double dx = 0;
-    double dy = 0;
-    double dz = 0;
-    int dr = 0;
-
     double vmae =0;
 
     int id = 0;
@@ -125,18 +118,8 @@ public class MyCaterpillar {
         r = t;
     }
 
-    public void setdr(int t) {
-        dr=t;
-    }
-
     public void setdx(double t) {
         dx=t;
-    }
-    public void setdy(double t) {
-        dy=t;
-    }
-    public void setdz(double t) {
-        dz=t;
     }
 
     public void setvmae(double t) {
@@ -150,38 +133,35 @@ public class MyCaterpillar {
             isBack=0;
         }
     }
-
-    public void Turn(int right) {
-        dr+=right;
-    }
     /**
      * Calculate the movement (rotation angle)
      */
     public void calculateMovement() {
-        dx += vmae * Math.cos(Math.toRadians(dr*0.1));
-        dz += vmae * Math.sin(Math.toRadians(dr*0.1));
-
+        dx += vmae;
         if(isBack==1) {
-            if(r==1800 & transformx > -0.7){
-              transformx -= velocity / 1000.0;
-            }else if (0<r & transformx<=-0.7){
-              r -= velocity;
-            }else if (r==0 & transformx < 0.7){
-              transformx += 0.0050;
-            }else if ((r<=0 | r>1800)& transformx>=0.7){
-              if(r<0)r=3600+r;
-              r -= velocity;
+
+            if (r < 1800 & transformx <= -0.1) {
+                r -= velocity;
+                if(r<=0)r=3600;
+            } else if (r == 1800 & transformx < 1.3) {
+                transformx -= velocity / 1000.0;
+            } else if (1800 <= r & transformx >= 1.3) {
+                r -= velocity;
+                //if (r > 3600) r = 0;
+            } else if (r < 1800 & transformx > -0.1) {
+                transformx += velocity / 1000.0;
             }
 
         }else{
-            if (r < 1800 & transformx <= -0.7) {
+            //System.out.println("id;"+id+"r:"+r+" t : "+transformx+" dx : "+dx);
+            if (r < 1800 & transformx <= -0.1) {
                 r += velocity;
-            } else if (r == 1800 & transformx < 0.7) {
+            } else if (r == 1800 & transformx < 1.3) {
                 transformx += velocity / 1000.0;
-            } else if (1800 <= r & transformx >= 0.7) {
+            } else if (1800 <= r & transformx >= 1.3) {
                 r += velocity;
                 if (r > 3600) r = 0;
-            } else if (r < 1800 & transformx > -0.7) {
+            } else if (r < 1800 & transformx > -0.1) {
                 transformx -= velocity / 1000.0;
             }
         }
@@ -193,9 +173,6 @@ public class MyCaterpillar {
      */
     public void resetMovement() {
         dx=0;
-        dy=0;
-        dz=0;
-        dr=0;
         r = syokir;
         transformx=syokix;
         transformy=syokiy;
@@ -221,10 +198,10 @@ public class MyCaterpillar {
                 gl.glBegin(GL2.GL_POLYGON);
                 gl.glNormal3dv(normal[j], 0);
                 gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
-                if(id%2==0) {
+                if(id==1) {
                     gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, green, 0);
                 }
-                if(id%2==1) {
+                if(id==2) {
                     gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, red, 0);
                 }
                 /*
@@ -279,19 +256,73 @@ public class MyCaterpillar {
     public void draw(GLAutoDrawable drawable) {
         GL2 gl = drawable.getGL().getGL2();
         GLUT glut = new GLUT();
+        // Set rotation and transformation
+        //ベクトル(0.0,1.0,0.0)を中心に(r*0.1)'回転
+        //gl.glTranslated( 0.1, 0.0, 0.0 );
+        //gl.glRotated(((double)r * 0.1), 0.0, 0.0, 1.0);
+        //ベクトル(0.0,0.0,transform)平行移動
+        //gl.glTranslated(0.0, transform, 0.0);
+        //gl.glTranslated(0.0, transform,0.0);
+        //gl.glTranslated(transform, 0.0, 0.0);
+        // Set reflection coefficients
+        //caterpillar1.draw(drawable);
+        //if (id==1 & r<1350 & r>450){
 
-
-        //gl.glRotated(((double)dr*0.1),0.0,1.0,0.0);
-        gl.glTranslated(dx,dy,dz);
-        gl.glRotated(((double)dr*(-0.1)),0.0,1.0,0.0);
+        /* { -0.1, 0.0, -0.5 },*/
         //gl.glTranslated(dx,0.0,0.0);
-
         gl.glTranslated(transformx,transformy,transformz);
         gl.glRotated(((double)r * 0.1), 0.0, 0.0, 1.0);
-
         gl.glTranslated(-0.0,0.25,0.0);
         draw_foot(drawable,gl,glut);
         gl.glTranslated(0.0,-0.25,0.0);//}
+
+
+        /*if (id==2 & r>2250 & r< 3150){
+            gl.glTranslated(transformx,transformy,transformz);
+            gl.glRotated(((double)r * 0.1), 0.0, .0, 1.0);
+            gl.glTranslated(-0.5,0.0,0.0);
+            draw_foot(drawable,gl,glut);
+            gl.glTranslated(0.5,0.0,0.0);}*/
+        //gl.glTranslated( id *1.0, 0.0, 0.0 );
+        /* Draw a box
+        for (int j = 0; j < 6; ++j) {
+            gl.glBegin(GL2.GL_POLYGON);
+            gl.glNormal3dv(normal[j], 0);
+            for (int i = 0; i < 4; ++i) {
+                gl.glVertex3dv(vertex1[face[j][i]], 0);
+            }
+            gl.glEnd();
+        }
+*/
+        /* Draw another box
+        for (int j = 0; j < 6; ++j) {
+            gl.glBegin(GL2.GL_POLYGON);
+            gl.glNormal3dv(normal[j], 0);
+            for (int i = 0; i < 4; ++i) {
+                gl.glVertex3dv(vertex2[face[j][i]], 0);
+            }
+            gl.glEnd();
+        }
+
+        //
+        gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, silver, 0);
+        gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
+
+        // Draw four spheres
+        gl.glTranslated(0.2, 0.0, 0.05);
+        glut.glutSolidSphere(0.1, 30, 20);
+        //半 径 0.1 の球を、経度方向に 30 分割、緯度方向に 20 分割してできる多面体で近似して描画す る
+
+        gl.glTranslated(-0.4, 0.0, 0.0);
+        glut.glutSolidSphere(0.1, 30, 20);
+
+        gl.glTranslated(0.0, 0.0, 0.4);
+        glut.glutSolidSphere(0.1, 30, 20);
+
+        gl.glTranslated(0.4, 0.0, 0.0);
+        glut.glutSolidSphere(0.1, 30, 20);*/
+
+        // Calculate the movement (rotation angle)
         calculateMovement();
     }
 

@@ -108,7 +108,16 @@ public class CgDrawer implements GLEventListener {
 
 		 // Set the viewpoint
 	     gl.glLoadIdentity();
-		 glu.gluLookAt(3.0, 2.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	     /*右後ろ？*/
+		 //glu.gluLookAt(3.0, 2.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+        /*後ろから*/
+        //glu.gluLookAt(5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+        /*左から*/
+        glu.gluLookAt(0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+        /*上から*/
+         //glu.gluLookAt(2.0, 7.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+        /*下から*/
+        //glu.gluLookAt(2.0, -7.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 		//(ex,ey,ez):視点の位置(cx,cy,cz):目標の位置(ux,uy,uz)ウィンドウに表示される画像の上方向
 		 // Set the positions of light sources
 		 gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_POSITION, light0pos, 0);

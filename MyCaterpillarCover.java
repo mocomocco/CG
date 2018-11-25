@@ -1,5 +1,5 @@
 /**
- * Model of a CaterpillarTire
+ * Model of a Caterpillar
  */
 
 import com.jogamp.opengl.GL2;
@@ -7,8 +7,7 @@ import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.util.gl2.GLUT;
 
 
-
-public class MyCaterpillarTire {
+public class MyCaterpillarCover {
 
     // Colors
     float color[] = { 0.0f, 1.0f, 0.0f, 1.0f };
@@ -20,16 +19,17 @@ public class MyCaterpillarTire {
     float blue[] = {0.0f,0.0f,1.0f,1.0f};
     float orange[] ={0.5f,0.5f,0.0f,1.0f};
 
-    double vertex_tirepart[][] = {
-            { -0.1, 0.0, -0.3 },
-            {  0.1, 0.0, -0.3 },
-            {  0.1, 0.02, -0.3 },
-            { -0.1, 0.02, -0.3 },
-            { -0.1, 0.0,  0.5 },
-            {  0.1, 0.0,  0.5 },
-            {  0.1, 0.02,  0.5 },
-            { -0.1, 0.02,  0.5 }
+    double vertex_cover[][] = {
+            { -0.7, 0.02, -0.2 },
+            {  0.7, 0.02, -0.2 },
+            {  0.7, 0.025, -0.2 },
+            { -0.7, 0.025, -0.2 },
+            { -0.7, 0.02,  0.2 },
+            {  0.7, 0.02,  0.2 },
+            {  0.7, 0.025,  0.2 },
+            { -0.7, 0.025,  0.2 }
     };
+
 
     // IDs of vertices of faces
     int face[][] = {
@@ -73,16 +73,19 @@ public class MyCaterpillarTire {
     double syokix=0;
     double syokiy=0;
     double syokiz=0;
+    int syokir=0;
+
+    int isBack=0;
 
     double dx = 0;
-    double dy=0;
-    double dz=0;
-    int dr=0;
+    double dy = 0;
+    double dz = 0;
+    int dr = 0;
 
     double vmae =0;
 
-    int sides;
     int id = 0;
+
 
 
 
@@ -107,11 +110,6 @@ public class MyCaterpillarTire {
     /**
      * Set transform
      */
-
-    public void setsides(int t) {
-        sides = t;
-    }
-
     public void setSyokix(double t) {
         syokix = t;
         transformx=syokix;
@@ -125,15 +123,38 @@ public class MyCaterpillarTire {
         transformz=syokiz;
     }
     public void setr(int t) {
+        syokir=t;
         r = t;
+    }
+
+    public void setdr(int t) {
+        dr=t;
     }
 
     public void setdx(double t) {
         dx=t;
     }
+    public void setdy(double t) {
+        dy=t;
+    }
+    public void setdz(double t) {
+        dz=t;
+    }
 
     public void setvmae(double t) {
         vmae=t;
+    }
+
+    public void Back() {
+        if(isBack==0){
+            isBack=1;
+        }else{
+            isBack=0;
+        }
+    }
+
+    public void Turn(int right) {
+        dr+=right;
     }
     /**
      * Calculate the movement (rotation angle)
@@ -152,22 +173,35 @@ public class MyCaterpillarTire {
         dy=0;
         dz=0;
         dr=0;
+        r = syokir;
         transformx=syokix;
         transformy=syokiy;
         transformz=syokiz;
     }
 
-    public void Turn(int right) {
-        dr+=right;
+    private void draw_cover(GLAutoDrawable drawable, GL2 gl, GLUT glut){
+        for (int j = 0; j < 6; ++j) {//面を一個作る
+            //ポリゴンの描写を始めるよ
+            gl.glBegin(GL2.GL_POLYGON);
+            //変数 normal[j] に設定されている 3 個の実数を、j 番目の四角形の法線ベクトルとして指定するよ
+            gl.glNormal3dv(normal[j], 0);
+            /*gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
+            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, black, 0);*/
+            /*if(id==1){
+                gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE,blue, 0);
+            }*/
+            for (int i = 0; i < 4; ++i) {//頂点を決める
+                double[] tyoutenlist={0,0,0};
+                tyoutenlist[0]=vertex_cover[face[j][i]][0];
+                tyoutenlist[1]=vertex_cover[face[j][i]][1];
+                tyoutenlist[2]=vertex_cover[face[j][i]][2];
+                gl.glVertex3dv(tyoutenlist, 0);
+            }
+            gl.glEnd();
+        }
+
     }
 
-    void Cylinder(double radius, double height, int sides,GLAutoDrawable drawable, GL2 gl, GLUT glut) {
-
-        glut.glutSolidCylinder(radius/2.0, height*1.0, sides, 10); //(4)円筒
-
-        gl.glRotated(180, 0.0, 1.0, 0.0);
-        glut.glutSolidCylinder(radius/2.0, height*1.0, sides, 10); //(4)円筒
-    }
 
 
     /**
@@ -177,22 +211,25 @@ public class MyCaterpillarTire {
         GL2 gl = drawable.getGL().getGL2();
         GLUT glut = new GLUT();
 
+
+        //gl.glRotated(((double)dr*0.1),0.0,1.0,0.0);
         gl.glTranslated(dx,dy,dz);
-        gl.glRotated(((double)dr*-0.1),0.0,1.0,0.0);
+        gl.glRotated(((double)dr*(-0.1)),0.0,1.0,0.0);
+        //gl.glTranslated(dx,0.0,0.0);
+
         gl.glTranslated(transformx,transformy,transformz);
         //gl.glRotated(((double)r * 0.1), 0.0, 0.0, 1.0);
-       // draw_foot(drawable,gl,glut);
-        gl.glTranslated(-0.0,0.25,0.0);
-
         gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
         gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, black, 0);
-        Cylinder(0.50, 0.15, sides,drawable, gl,glut);
-        gl.glTranslated(-0.0,-0.25,0.0);
+        //gl.glTranslated(-0.0,0.26,0.0);
+        draw_cover(drawable,gl,glut);
+        /*gl.glTranslated(0.0,0.53,0.0);
 
-        //gl.glRotated(-900, 1.0, 0.0, 0.0);
-
-
-
+        draw_cover(drawable,gl,glut);
+        gl.glTranslated(0.0,-0.53
+                ,0.0);
+        gl.glTranslated(0.0,-0.26,0.0);//}
+*/
         calculateMovement();
     }
 

@@ -13,23 +13,28 @@ import com.jogamp.opengl.util.gl2.GLUT;
 
 public class CgDrawer implements GLEventListener {
 	GLAutoDrawable glAD;
-	
+
 	// Positions of light sources
 	static float light0pos[] = { 0.0f, -3.0f, -5.0f, 1.0f };
 	static float light1pos[] = { 5.0f, 3.0f, 3.0f, 1.0f };
 
 
-	
+
 	/**
 	 * Initialization of drawing setting
 	 */
     public void init(GLAutoDrawable drawable) {
         float silver[] = {0.5f, 0.5f, 0.5f, 1.0f};
-    	
+        etheta=0.0;
+        ey=5.0;
+        er=7.0;
+        ux=0.0;
+        uy=3.0;
+        uz=0.0;
         this.glAD = drawable;
-      
+
         GL2 gl= drawable.getGL().getGL2();
-	    
+
         // Initialization of OpenGL setting
 		gl.glEnable(GL.GL_RGBA);
 		gl.glEnable(GL2.GL_DEPTH);
@@ -38,19 +43,19 @@ public class CgDrawer implements GLEventListener {
         gl.glEnable(GL2.GL_NORMALIZE);
         gl.glEnable(GL.GL_CULL_FACE);
         gl.glCullFace(GL.GL_BACK);
-        
+
         // Initialization of light sources
         gl.glEnable(GL2.GL_LIGHTING);
         gl.glEnable(GL2.GL_LIGHT0);
         gl.glEnable(GL2.GL_LIGHT1);
         gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_DIFFUSE, silver, 0);
         gl.glLightfv(GL2.GL_LIGHT1, GL2.GL_DIFFUSE, silver, 0);
-        
+
         // Specification of background color背景色設定(R,G,B,_)
-        gl.glClearColor(0.7f, 0.7f, 0.7f, 1.0f);
-        
+        gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+
 	}
-    
+
     /**
      * Called when the shape of the window is modified
      */
@@ -58,7 +63,7 @@ public class CgDrawer implements GLEventListener {
         GL2 gl = drawable.getGL().getGL2();
         GLUgl2 glu = new GLUgl2();
 
-        if (height <= 0) 
+        if (height <= 0)
             height = 1;
         float h = (float) width / (float) height;
 
@@ -73,10 +78,10 @@ public class CgDrawer implements GLEventListener {
         // Set the matrix for object transformation
         gl.glMatrixMode(GL2.GL_MODELVIEW);
         gl.glLoadIdentity();
-        
-		 
+
+
     }
-    
+
 
     /**
      * Called when redraw is needed
@@ -84,7 +89,7 @@ public class CgDrawer implements GLEventListener {
     public void display(GLAutoDrawable drawable) {
         draw(drawable);
     }
-    
+
 
     /**
      * Dummy function (DO NOT remove)
@@ -94,7 +99,8 @@ public class CgDrawer implements GLEventListener {
     	;
     }
 
-    
+    double er,etheta,ey,ux,uy,uz;
+
 
 	/**
 	 * Called when redraw is needed
@@ -113,22 +119,27 @@ public class CgDrawer implements GLEventListener {
         /*後ろから*/
         //glu.gluLookAt(5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
         /*左から*/
-        glu.gluLookAt(0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+        //glu.gluLookAt(0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
         /*上から*/
-         //glu.gluLookAt(2.0, 7.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+
+        //glu.gluLookAt(2.0, 7.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
         /*下から*/
         //glu.gluLookAt(2.0, -7.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 		//(ex,ey,ez):視点の位置(cx,cy,cz):目標の位置(ux,uy,uz)ウィンドウに表示される画像の上方向
 		 // Set the positions of light sources
+
+        //MyScene.centerset(ux,uy,uz);
+        glu.gluLookAt(er*Math.cos(etheta), ey, er * Math.sin(etheta), 0.0, 3.0, 0.0, 0.0, 1.0, 0.0);
+        //System.out.println(er + " " +ey+  " " +etheta+ " ");
 		 gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_POSITION, light0pos, 0);
 		 gl.glLightfv(GL2.GL_LIGHT1, GL2.GL_POSITION, light1pos, 0);
-		
+
 		 // Draw
 		 MyScene.draw(drawable);
-		 
+
 	}
-	
-	
+
+
 	public GLAutoDrawable getGLAutoDrawable() {
 		return glAD;
 	}
@@ -136,7 +147,7 @@ public class CgDrawer implements GLEventListener {
 	@Override
 	public void dispose(GLAutoDrawable arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 }

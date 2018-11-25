@@ -35,7 +35,7 @@ public class CgKeyListener implements KeyListener {
 			break;
 		
 		// "R": reset
-		case KeyEvent.VK_R:
+		case KeyEvent.VK_0:
 			MyScene.resetMovement();
 			canvas.display();
 			break;
@@ -48,16 +48,43 @@ public class CgKeyListener implements KeyListener {
 		//animator.start();
 		break;
 
-		case KeyEvent.VK_RIGHT:
+		case KeyEvent.VK_R:
 		MyScene.turn(2);
 		canvas.display();
 		break;
 
-		case KeyEvent.VK_LEFT:
+		case KeyEvent.VK_L:
 			MyScene.turn(-2);
 			canvas.display();
 			break;
 
+		case KeyEvent.VK_UP:
+			canvas.up(1);
+			canvas.display();
+			break;
+
+        case KeyEvent.VK_DOWN:
+		    canvas.up(-1);
+			canvas.display();
+			break;
+
+		case KeyEvent.VK_LEFT:
+			canvas.left(1);
+			canvas.display();
+			break;
+
+		case  KeyEvent.VK_RIGHT:
+			canvas.left(-1);
+			canvas.display();
+			break;
+
+		case KeyEvent.VK_C:
+			canvas.close(1);
+			canvas.display();
+
+		case KeyEvent.VK_F:
+			canvas.close(-1);
+			canvas.display();
 		}
 		
 	}

@@ -9,9 +9,6 @@ import com.jogamp.opengl.GLAutoDrawable;
 public class MyScene {
 
 	// Models of a flag and a car
-	static MyFlag flag1 = null;
-	static MyCar car1 = null;
-	static MyRobot robot1=null;
 	static MyCaterpillar[] caterpillars1;
 	static MyCaterpillar[] caterpillars2;
 	static int caterpillarnum=18;
@@ -19,6 +16,9 @@ public class MyScene {
 	static MyCaterpillarTire[] tire1;
 	static MyCaterpillarTire[] tire2;
 	static MyCaterpillarCore[] core;
+	static MyCaterpillarCover[] cover1;
+	static MyCaterpillarCover[] cover2;
+	static MyRobot robot;
 	static double vmae;
 	/**
 	 * Initialization
@@ -34,6 +34,11 @@ public class MyScene {
 			tire2[i].resetMovement();
 			core[i].resetMovement();
 		}
+		for(int i=0;i<2;i++){
+			cover1[i].resetMovement();
+			cover2[i].resetMovement();
+		}
+		robot.resetMovement();
 	}
 	private static void robotback(){
 		vmae=-vmae;
@@ -48,7 +53,13 @@ public class MyScene {
 			tire2[i].setvmae(vmae);
 			core[i].setvmae(vmae);
 		}
+		for(int i=0;i<2;i++){
+			cover1[i].setvmae(vmae);
+			cover2[i].setvmae(vmae);
+		}
+		robot.setvmae(vmae);
 	}
+
 
 	private static void robotturn(int right){
 		vmae=-vmae;
@@ -61,6 +72,11 @@ public class MyScene {
 			tire2[i].Turn(right*10);
 			core[i].Turn(right*10);
 		}
+		for (int i=0;i<2;i++) {
+			cover1[i].Turn(right * 10);
+			cover2[i].Turn(right * 10);
+		}
+		robot.Turn(right *10);
 	}
 
 	private static void robotinit(){
@@ -69,19 +85,23 @@ public class MyScene {
 		tire1 = new MyCaterpillarTire[tirenum];
 		tire2 = new MyCaterpillarTire[tirenum];
 		core = new MyCaterpillarCore[tirenum];
-
-		robot1 = new MyRobot();
+		cover1 = new MyCaterpillarCover[2];
+		cover2 = new MyCaterpillarCover[2];
+		robot = new MyRobot();
 		vmae=-0.01;
-		/*robot1.setColor(0.0, 1.0, 0.0);
-		robot1.setVelocity(5);
-		robot1.setTransform(1.5);*/
+
+		robot.setSyokix(0);
+		robot.setSyokiy(0);
+		robot.setSyokiz(0);
+		robot.inithyoujou();
+		robot.setvmae(vmae);
 
 		for(int i=0;i<tirenum;i++) {
 			tire1[i] = new MyCaterpillarTire();
 			tire1[i].sides = 30;
 			if (i==0){tire1[i].sides = 10;}
 			tire1[i].setSyokix(0.65*(i-1));
-			tire1[i].setSyokiy(-0.25);
+			tire1[i].setSyokiy(0);
 			tire1[i].setSyokiz(0.8);
 			tire1[i].setvmae(vmae);
 
@@ -89,18 +109,37 @@ public class MyScene {
 			tire2[i].sides = 30;
 			if (i==0){tire2[i].sides = 10;}
 			tire2[i].setSyokix(0.65*(i-1));
-			tire2[i].setSyokiy(-0.25);
+			tire2[i].setSyokiy(0);
 			tire2[i].setSyokiz(-0.8);
 			tire2[i].setvmae(vmae);
 
 			core[i]= new MyCaterpillarCore();
 			core[i].sides=10;
 			core[i].setSyokix(0.65*(i-1));
-			core[i].setSyokiy(-0.25);
+			core[i].setSyokiy(0);
 			core[i].setSyokiz(0);
 			core[i].setvmae(vmae);
 		}
 
+		for(int i=0;i<2;i++){
+			cover1[i]=new MyCaterpillarCover();
+			cover1[i].setSyokix(0);
+			cover1[i].setSyokiz(0.8);
+			cover1[i].setvmae(vmae);
+			cover2[i]=new MyCaterpillarCover();
+			cover2[i].setSyokix(0);
+			cover2[i].setSyokiz(-0.8);
+			cover2[i].setvmae(vmae);
+			if(i==1){
+				cover1[i].setSyokiy(-0.04);
+				cover2[i].setSyokiy(-0.04);
+			}else{
+				cover1[i].setSyokiy(0.49);
+				cover2[i].setSyokiy(0.49);
+			}
+
+
+		}
 
 		for (int i=0 ;i<caterpillarnum;i++){
 			caterpillars1[i]=new MyCaterpillar();
@@ -141,14 +180,7 @@ public class MyScene {
 	}
 
 	public static void init() {
-		 // Allocate a flag
-		 //flag1 = new MyFlag();
-
-		 // Allocate a car
-		 car1 = new MyCar();
-		 car1.setColor(1.0, 0.0, 0.0);
-		 car1.setVelocity(5);
-		 car1.setTransform(1.5);
+		 // Allocate a robot
 
 		 robotinit();
 
@@ -160,13 +192,15 @@ public class MyScene {
 	 */
 
 	private static void drawrobot(GLAutoDrawable drawable,GL2 gl){
+
+
 		gl.glPushMatrix();
-		if(robot1 != null)
-			robot1.draw(drawable);
+		if (robot != null)
+			robot.draw(drawable);
 		gl.glPopMatrix();
 
 		for (int i=0;i<tirenum;i++) {
-			/*gl.glPushMatrix();
+			gl.glPushMatrix();
 			if (tire1[i] != null)
 				tire1[i].draw(drawable);
 			gl.glPopMatrix();
@@ -175,13 +209,24 @@ public class MyScene {
 			if (tire2[i] != null)
 				tire2[i].draw(drawable);
 			gl.glPopMatrix();
-*/
+
 			gl.glPushMatrix();
 			if (core[i] != null)
 				core[i].draw(drawable);
 			gl.glPopMatrix();
 		}
 
+		for(int i=0;i<2;i++){
+			gl.glPushMatrix();
+			if (cover1[i] != null)
+				cover1[i].draw(drawable);
+			gl.glPopMatrix();
+
+			gl.glPushMatrix();
+			if (cover2[i] != null)
+				cover2[i].draw(drawable);
+			gl.glPopMatrix();
+		}
 		for (int i=0;i<caterpillarnum;i++){
 			gl.glPushMatrix();
 			if(caterpillars1[i] != null)
@@ -201,23 +246,7 @@ public class MyScene {
 		GL2 gl = drawable.getGL().getGL2();
 		 gl.glLightModeli(GL2.GL_LIGHT_MODEL_TWO_SIDE, GL2.GL_TRUE);
 
-	    // Draw the flag
-	    /*gl.glPushMatrix();
-	    if(flag1 != null)
-	    	flag1.draw(drawable);
-	    gl.glPopMatrix();*/
 
-	    // Draw the car
-		/*gl.glPushMatrix();
-	    if(car1 != null)
-	    	car1.draw(drawable);
-	    gl.glPopMatrix();*/
-
-		/*gl.glPushMatrix();
-		if(robot1 != null)
-			robot1.draw(drawable);
-		gl.glPopMatrix();
-	  */
 		drawrobot(drawable,gl);
 	}
 
@@ -226,8 +255,7 @@ public class MyScene {
 	 */
 	public static void resetMovement() {
 
-		// Reset the position of the car
-	//	car1.resetMovement();
+		// Reset the position of the robot
 		robotreset();
 	}
 	public static void back() {

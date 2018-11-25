@@ -30,6 +30,7 @@ public class MyCaterpillar {
             { -0.1, 0.02,  0.2 }
     };
 
+
     // IDs of vertices of faces
     int face[][] = {
             { 0, 3, 2, 1 },
@@ -50,13 +51,6 @@ public class MyCaterpillar {
             { 0.0,-1.0, 0.0 }
     };
 
-    double tire_housen[][]={
-            {0.0,0.0,1.0},
-            {0.0,0.0,-1.0},
-            {0.0,1.0,0.0},
-            {0.0,-1.0,0.0},
-            {0.0,0.866,0.5}
-    };
 
     // Rotation angle
     int r = 0;
@@ -221,12 +215,13 @@ public class MyCaterpillar {
                 gl.glBegin(GL2.GL_POLYGON);
                 gl.glNormal3dv(normal[j], 0);
                 gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
-                if(id%2==0) {
+                /*if(id%2==0) {
                     gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, green, 0);
                 }
                 if(id%2==1) {
                     gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, red, 0);
-                }
+                }*/
+                gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, green, 0);
                 /*
                 if(id % 5==0){
                 gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, green, 0);}
@@ -258,18 +253,9 @@ public class MyCaterpillar {
         draw_tire_part(drawable,gl,glut);
     }
 
-    private void draw_tire_core(GLAutoDrawable drawable, GL2 gl, GLUT glut){
-
-    }
 
     private void draw_foot(GLAutoDrawable drawable, GL2 gl, GLUT glut){
-        gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, color, 0);
-        gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
-
-        gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, color, 0);
-        gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
         draw_tires(drawable,gl,glut);
-        draw_tire_core(drawable,gl,glut);
     }
 
 
@@ -285,13 +271,14 @@ public class MyCaterpillar {
         gl.glTranslated(dx,dy,dz);
         gl.glRotated(((double)dr*(-0.1)),0.0,1.0,0.0);
         //gl.glTranslated(dx,0.0,0.0);
-
+        gl.glTranslated(-0.0,0.25,0.0);
         gl.glTranslated(transformx,transformy,transformz);
-        gl.glRotated(((double)r * 0.1), 0.0, 0.0, 1.0);
+        gl.glRotated(((double)r * (0.1)), 0.0, 0.0, 1.0);
 
         gl.glTranslated(-0.0,0.25,0.0);
         draw_foot(drawable,gl,glut);
-        gl.glTranslated(0.0,-0.25,0.0);//}
+        gl.glTranslated(0.0,-0.25,0.0);
+        gl.glTranslated(-0.0,-0.25,0.0);
         calculateMovement();
     }
 

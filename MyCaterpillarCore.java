@@ -176,75 +176,13 @@ public class MyCaterpillarCore {
         list1[2]=z;
     }
     double[] tyoutenlist = {0,0,0};
-    void Cylinder(double radius, double height, int sides,GLAutoDrawable drawable, GL2 gl, GLUT glut){
-        int i;
-        double step = 3.141592 *2.0/(double)sides;
-        double t;
+    void Cylinder(double radius, double height, int sides,GLAutoDrawable drawable, GL2 gl, GLUT glut) {
 
-        /*上*/
-       // gl.glNormal3d(0.0,1.0,0.0);
-        gl.glNormal3d(0.0,1.0,0.0);
-        //gl.glBegin(gl.GL_TRIANGLE_FAN);
-        gl.glBegin(GL2.GL_POLYGON);
-       // gl.glVertex3d(0.0, height, 0.0);
-        /*for(i=0; i<=sides; i++){
-            t = step*(double)i;
-            setlist(tyoutenlist,radius*Math.sin(t), height, radius*Math.cos(t));
-            gl.glVertex3dv(tyoutenlist,0);
-        }
-        gl.glEnd();*/
+        glut.glutSolidCylinder(radius/2.0, height*1.0, sides, 10); //(4)円筒
 
-
-        /*下*/
-
-        gl.glNormal3d(0.0,-1.0,0.0);
-        //gl.glBegin(gl.GL_TRIANGLE_
-        // FAN);
-        gl.glBegin(GL2.GL_POLYGON);
-        //gl.glVertex3dv(0.0, -height, 0.0);
-        gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
-        gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, red, 0);
-        for(i=0; i<=sides; i++){
-            t = step*(double)i;
-            setlist(tyoutenlist,radius*Math.sin(t), -height, radius*Math.cos(t));
-            gl.glVertex3dv(tyoutenlist,0);
-        }
-        gl.glEnd();
-        gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
-        gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, white, 0);
-        /*横*/
-        //gl.glBegin(gl.GL_QUAD_STRIP);
-        for(i=0; i<=sides; i++){
-            gl.glBegin(GL2.GL_POLYGON);
-            double theta = step*(double)i;
-            double x =Math.sin(theta);
-            double z = Math.cos(theta);
-            double nextx=Math.sin(theta + step);
-
-            double nextz = Math.cos(theta+ step);
-            double normallist ;
-
-            
-            setlist(tyoutenlist,x,0.0,z);
-            gl.glNormal3dv(tyoutenlist,0);
-
-            setlist(tyoutenlist,radius*x, height, radius*z);
-            gl.glVertex3dv(tyoutenlist,0);
-            setlist(tyoutenlist,radius*x, -height, radius*z);
-            gl.glVertex3dv(tyoutenlist,0);
-            setlist(tyoutenlist,radius*nextx, -height, radius*nextz);
-            gl.glVertex3dv(tyoutenlist,0);
-            setlist(tyoutenlist,radius*nextx, height, radius*nextz);
-            gl.glVertex3dv(tyoutenlist,0);
-
-            //gl.glVertex3d(radius*nextx, -height, radius*z);
-            gl.glEnd();
-        }
-
-
-
+        gl.glRotated(180, 0.0, 1.0, 0.0);
+        glut.glutSolidCylinder(radius/2.0, height*1.0, sides, 10); //(4)円筒
     }
-
 
     /**
      * Draw the car
@@ -256,19 +194,16 @@ public class MyCaterpillarCore {
         gl.glTranslated(dx,dy,dz);
         gl.glRotated(((double)dr*-0.1),0.0,1.0,0.0);
         gl.glTranslated(transformx,transformy,transformz);
-
-        gl.glTranslated(-0.0,0.25,0.0);
+        gl.glTranslated(0.0,0.25,0.0);
         // draw_foot(drawable,gl,glut);
-        gl.glRotated(90, 1.0, 0.0, 0.0);
 
         gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
         gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, white, 0);
+
         Cylinder(0.05, 1.0, sides,drawable, gl,glut);
 
-        //gl.glRotated(-900, 1.0, 0.0, 0.0);
-        gl.glTranslated(0.0,-0.25,0.0);//}
 
-
+        gl.glTranslated(0.0,-0.25,0.0);
 
         calculateMovement();
     }

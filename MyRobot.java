@@ -25,6 +25,10 @@ public class MyRobot {
     double haratakasa=0.90;
     double munetakasa=0.20;
     double atamatakasa=0.60;
+    double armkibantakasa=0.60;
+    double kadoububunnnotakasa=0.0;
+    double udenemotonagasa=yokohaba/10.0;
+    double udesakinonagasa=yokohaba/10.0;
 
     double vertex_foot[][] = {
             { -0.5, -0.20, -0.5 },
@@ -35,6 +39,72 @@ public class MyRobot {
             {  0.5, -0.20,  0.5 },
             {  0.5, 0.30,  0.5 },
             { -0.5, 0.30,  0.5 }
+    };
+
+    double vertex_armkibanmizo[][] = {
+            { -yokohaba/100.0, -armkibantakasa*0.9, -yokohaba/10.0 },
+            {  yokohaba/100.0, -armkibantakasa*0.9, -yokohaba/10.0 },
+            {  yokohaba/100.0, armkibantakasa*0.9, -yokohaba/10.0 },
+            { -yokohaba/100.0, armkibantakasa*0.9, -yokohaba/10.0 },
+            { -yokohaba/100.0, -armkibantakasa*0.9,  yokohaba/10.0 },
+            {  yokohaba/100.0, -armkibantakasa*0.9,  yokohaba/10.0 },
+            {  yokohaba/100.0, armkibantakasa*0.9,  yokohaba/10.0 },
+            { -yokohaba/100.0, armkibantakasa*0.9,  yokohaba/10.0 }
+    };
+
+    double vertex_armkiban[][]={
+            { -yokohaba/9.0, -armkibantakasa, -yokohaba/50.0 },
+            {  yokohaba/9.0, -armkibantakasa, -yokohaba/50.0 },
+            {  yokohaba/9.0, armkibantakasa, -yokohaba/50.0 },
+            { -yokohaba/9.0, armkibantakasa, -yokohaba/50.0 },
+            { -yokohaba/9.0, -armkibantakasa,  yokohaba/50.0 },
+            {  yokohaba/9.0, -armkibantakasa,  yokohaba/50.0 },
+            {  yokohaba/9.0, armkibantakasa,  yokohaba/50.0 },
+            { -yokohaba/9.0, armkibantakasa,  yokohaba/50.0 }
+    };
+
+    double vertex_armmizo[][] = {
+            { -yokohaba/20.0, -armkibantakasa, -yokohaba/20.0 },
+            {  yokohaba/20.0, -armkibantakasa, -yokohaba/20.0 },
+            {  yokohaba/20.0, armkibantakasa, -yokohaba/20.0 },
+            { -yokohaba/20.0, armkibantakasa, -yokohaba/20.0 },
+            { -yokohaba/20.0, -armkibantakasa,  yokohaba/20.0 },
+            {  yokohaba/20.0, -armkibantakasa,  yokohaba/20.0 },
+            {  yokohaba/20.0, armkibantakasa,  yokohaba/20.0 },
+            { -yokohaba/20.0, armkibantakasa,  yokohaba/20.0 }
+    };
+
+    double vertex_kadoububunkiban[][] = {
+            { -yokohaba/20.0, -yokohaba/20.0, -yokohaba/20.0 },
+            {  yokohaba/20.0, -yokohaba/20.0, -yokohaba/20.0 },
+            {  yokohaba/20.0, yokohaba/20.0, -yokohaba/20.0 },
+            { -yokohaba/20.0, yokohaba/20.0, -yokohaba/20.0 },
+            { -yokohaba/20.0, -yokohaba/20.0,  yokohaba/20.0 },
+            {  yokohaba/20.0, -yokohaba/20.0,  yokohaba/20.0 },
+            {  yokohaba/20.0, yokohaba/20.0,  yokohaba/20.0 },
+            { -yokohaba/20.0, yokohaba/20.0,  yokohaba/20.0 }
+    };
+
+    double vertex_kadoububunnemoto[][] = {
+            { -yokohaba/10.0,-yokohaba/5.0  -Math.min(udenemotonagasa,yokohaba*2), },
+            {  yokohaba/10.0, -yokohaba/5.0, -Math.min(udenemotonagasa,yokohaba*2) },
+            {  yokohaba/10.0, -yokohaba/5.0 , Math.min(udenemotonagasa,yokohaba*2)},
+            { -yokohaba/10.0, -yokohaba/5.0, Math.min(udenemotonagasa,yokohaba*2) },
+            { -yokohaba/10.0,  yokohaba/5.0 , -Math.min(udenemotonagasa,yokohaba*2)},
+            {  yokohaba/10.0,  yokohaba/5.0, -Math.min(udenemotonagasa,yokohaba*2) },
+            {  yokohaba/10.0,  yokohaba/5.0 , Math.min(udenemotonagasa,yokohaba*2)},
+            { -yokohaba/10.0,  yokohaba/5.0 , Math.min(udenemotonagasa,yokohaba*2)}
+    };
+
+    double vertex_kadoububunsaki[][] = {
+            { -yokohaba/10.0,-yokohaba/5.0  -Math.min(udesakinonagasa,yokohaba*2), },
+            {  yokohaba/10.0, -yokohaba/5.0, -Math.min(udesakinonagasa,yokohaba*2) },
+            {  yokohaba/10.0, -yokohaba/5.0 , Math.min(udesakinonagasa,yokohaba*2)},
+            { -yokohaba/10.0, -yokohaba/5.0, Math.min(udesakinonagasa,yokohaba*2) },
+            { -yokohaba/10.0,  yokohaba/5.0 , -Math.min(udesakinonagasa,yokohaba*2)},
+            {  yokohaba/10.0,  yokohaba/5.0, -Math.min(udesakinonagasa,yokohaba*2) },
+            {  yokohaba/10.0,  yokohaba/5.0 , Math.min(udesakinonagasa,yokohaba*2)},
+            { -yokohaba/10.0,  yokohaba/5.0 , Math.min(udesakinonagasa,yokohaba*2)}
     };
 
     double vertex_hara[][] = {
@@ -148,7 +218,7 @@ public class MyRobot {
         for(int i=0;i<11;i++){
           Arrays.fill(hyoujou[i],0);
         }
-       // normal();
+
     }
 
     public void setSyokix(double t) {
@@ -181,6 +251,15 @@ public class MyRobot {
 
     public void setvmae(double t) {
         vmae=t;
+        if(t<0) {
+            smile();
+        }else{
+            inithyoujou();
+            set_hyoujou("b", 15, 1);
+            set_hyoujou("a", 10, 2);
+            set_hyoujou("c", 5, 1);
+            set_hyoujou("k", 0, 2);
+        }
     }
     /**
      * Calculate the movement (rotation angle)
@@ -207,7 +286,6 @@ public class MyRobot {
 
     public void Turn(int right) {
         dr+=right;
-        smile();
     }
 
     private void setlist(double[] list1,double x,double y,double z){
@@ -294,18 +372,218 @@ public class MyRobot {
         }
     }
 
+    public void draw_armkiban(GLAutoDrawable drawable, GL2 gl, GLUT glut){
+        for (int j = 0; j < 6; ++j) {//面を一個作る
+            //ポリゴンの描写を始めるよ
+            gl.glBegin(GL2.GL_POLYGON);
+            //変数 normal[j] に設定されている 3 個の実数を、j 番目の四角形の法線ベクトルとして指定するよ
+            gl.glNormal3dv(normal[j], 0);
+            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
+            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, black, 0);
+            for (int i = 0; i < 4; ++i) {//頂点を決める
+                double[] tyoutenlist={0,0,0};
+                tyoutenlist[0]=vertex_armkiban[face[j][i]][0];
+                tyoutenlist[1]=vertex_armkiban[face[j][i]][1];
+                tyoutenlist[2]=vertex_armkiban[face[j][i]][2];
+                gl.glVertex3dv(tyoutenlist, 0);
+            }
+            gl.glEnd();
+        }
+
+    }
+
+    public void draw_armkibanmizo(GLAutoDrawable drawable, GL2 gl, GLUT glut){
+        for (int j = 0; j < 6; ++j) {//面を一個作る
+            //ポリゴンの描写を始めるよ
+            gl.glBegin(GL2.GL_POLYGON);
+            //変数 normal[j] に設定されている 3 個の実数を、j 番目の四角形の法線ベクトルとして指定するよ
+            gl.glNormal3dv(normal[j], 0);
+            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
+            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, black, 0);
+            for (int i = 0; i < 4; ++i) {//頂点を決める
+                double[] tyoutenlist={0,0,0};
+                tyoutenlist[0]=vertex_armkibanmizo[face[j][i]][0];
+                tyoutenlist[1]=vertex_armkibanmizo[face[j][i]][1];
+                tyoutenlist[2]=vertex_armkibanmizo[face[j][i]][2];
+                gl.glVertex3dv(tyoutenlist, 0);
+            }
+            gl.glEnd();
+        }
+
+    }
+    public void draw_armkadoububun(GLAutoDrawable drawable, GL2 gl, GLUT glut){
+        //      if((kadoububunnnotakasa < armkibantakasa*0.9) && (  kadoububunnnotakasa > -armkibantakasa*0.9)){
+        gl.glTranslated(0.0,kadoububunnnotakasa,0.0);
+                for (int j = 0; j < 6; ++j) {//面を一個作る
+				            //ポリゴンの描写を始めるよ
+				            gl.glBegin(GL2.GL_POLYGON);
+				            //変数 normal[j] に設定されている 3 個の実数を、j 番目の四角形の法線ベクトルとして指定するよ
+				            gl.glNormal3dv(normal[j], 0);
+				            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
+				            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, black, 0);
+				            for (int i = 0; i < 4; ++i) {//頂点を決める
+				                double[] tyoutenlist={0,0,0};
+				                tyoutenlist[0]=vertex_kadoububunkiban[face[j][i]][0];
+				                tyoutenlist[1]=vertex_kadoububunkiban[face[j][i]][1];
+				                tyoutenlist[2]=vertex_kadoububunkiban[face[j][i]][2];
+				                gl.glVertex3dv(tyoutenlist, 0);
+				            }
+				            gl.glEnd();
+				        }
+        gl.glTranslated(0.0,-kadoububunnnotakasa,0.0);
+
+    }
+
+    public void draw_armkadoububunnemoto(GLAutoDrawable drawable, GL2 gl, GLUT glut){
+      //if((kadoububunnnotakasa < armkibantakasa*0.9) && (  kadoububunnnotakasa > -armkibantakasa*0.9)){
+        gl.glTranslated(0.0,kadoububunnnotakasa,0.0);
+                for (int j = 0; j < 6; ++j) {//面を一個作る
+				            //ポリゴンの描写を始めるよ
+				            gl.glBegin(GL2.GL_POLYGON);
+				            //変数 normal[j] に設定されている 3 個の実数を、j 番目の四角形の法線ベクトルとして指定するよ
+				            gl.glNormal3dv(normal[j], 0);
+				            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
+				            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, white, 0);
+				            for (int i = 0; i < 4; ++i) {//頂点を決める
+				                double[] tyoutenlist={0,0,0};
+				                tyoutenlist[0]=vertex_kadoububunnemoto[face[j][i]][0];
+				                tyoutenlist[1]=vertex_kadoububunnemoto[face[j][i]][1];
+				                tyoutenlist[2]=vertex_kadoububunnemoto[face[j][i]][2];
+				                gl.glVertex3dv(tyoutenlist, 0);
+				            }
+				            gl.glEnd();
+				        }
+        gl.glTranslated(0.0,-kadoububunnnotakasa,0.0);
+
+    }
+
+    public void draw_armkadoububunsaki(GLAutoDrawable drawable, GL2 gl, GLUT glut){
+      //if((kadoububunnnotakasa < armkibantakasa*0.9) && (  kadoububunnnotakasa > -armkibantakasa*0.9)){
+        gl.glTranslated(0.0,kadoububunnnotakasa,0.0);
+                for (int j = 0; j < 6; ++j) {//面を一個作る
+				            //ポリゴンの描写を始めるよ
+				            gl.glBegin(GL2.GL_POLYGON);
+				            //変数 normal[j] に設定されている 3 個の実数を、j 番目の四角形の法線ベクトルとして指定するよ
+				            gl.glNormal3dv(normal[j], 0);
+				            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
+				            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, white, 0);
+				            for (int i = 0; i < 4; ++i) {//頂点を決める
+				                double[] tyoutenlist={0,0,0};
+				                tyoutenlist[0]=vertex_kadoububunsaki[face[j][i]][0];
+				                tyoutenlist[1]=vertex_kadoububunsaki[face[j][i]][1];
+				                tyoutenlist[2]=vertex_kadoububunsaki[face[j][i]][2];
+				                gl.glVertex3dv(tyoutenlist, 0);
+				            }
+				            gl.glEnd();
+				        }
+        gl.glTranslated(0.0,-kadoububunnnotakasa,0.0);
+
+    }
+
+    public void draw_armmizo(GLAutoDrawable drawable, GL2 gl, GLUT glut){
+        for (int j = 0; j < 6; ++j) {//面を一個作る
+            //ポリゴンの描写を始めるよ
+            gl.glBegin(GL2.GL_POLYGON);
+            //変数 normal[j] に設定されている 3 個の実数を、j 番目の四角形の法線ベクトルとして指定するよ
+            gl.glNormal3dv(normal[j], 0);
+            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
+            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, black, 0);
+            for (int i = 0; i < 4; ++i) {//頂点を決める
+                double[] tyoutenlist={0,0,0};
+                tyoutenlist[0]=vertex_armmizo[face[j][i]][0];
+                tyoutenlist[1]=vertex_armmizo[face[j][i]][1];
+                tyoutenlist[2]=vertex_armmizo[face[j][i]][2];
+                gl.glVertex3dv(tyoutenlist, 0);
+            }
+            gl.glEnd();
+        }
+    }
+
+    public void draw_arm(GLAutoDrawable drawable, GL2 gl, GLUT glut){
+        gl.glTranslated(0.0,0.0,tatehaba);
+        draw_armkiban(drawable, gl, glut);
+
+        gl.glTranslated(0.0,0.0,-yokohaba/50.0);
+        draw_armkibanmizo(drawable,gl,glut);
+        gl.glTranslated(0.0,0.0,yokohaba/50.0);
+
+        gl.glTranslated(0.0,armkibantakasa-yokohaba/10.0,0.0);
+        glut.glutSolidCube((float)(yokohaba/10.0));
+        gl.glTranslated(0.0,-armkibantakasa+yokohaba/10.0,0.0);
+
+        gl.glTranslated(0.0,-armkibantakasa+yokohaba/10.0,0.0);
+        glut.glutSolidCube((float)(yokohaba/10.0));
+        gl.glTranslated(0.0,armkibantakasa-yokohaba/10.0,0.0);
+
+
+
+        gl.glTranslated(yokohaba/9.0,0.0,yokohaba/50.0);
+        draw_armmizo(drawable,gl,glut);
+        gl.glTranslated(-yokohaba/4.5,0.0,0.0);
+        draw_armmizo(drawable,gl,glut);
+        gl.glTranslated(yokohaba/9.0,0.0,-yokohaba/50.0);
+
+        gl.glTranslated(0.0,0.0,yokohaba/30.0);
+        draw_armkadoububun(drawable,gl,glut);
+        gl.glTranslated(0.0,0.0,yokohaba/10.0+Math.min(udenemotonagasa,yokohaba*2));
+        draw_armkadoububunnemoto(drawable,gl,glut);
+        gl.glTranslated(0.0,0.0,yokohaba/10.0+Math.min(udenemotonagasa,yokohaba*2));
+        //draw_armkadoububunsaki(drawable,gl,glut);
+        gl.glTranslated(0.0,0.0,-yokohaba/10.0-Math.min(udenemotonagasa,yokohaba*2));
+        gl.glTranslated(0.0,0.0,-yokohaba/10.0-Math.min(udenemotonagasa,yokohaba*2));
+        gl.glTranslated(0.0,0.0,-yokohaba/30.0);
+
+        //可動部分
+
+        gl.glTranslated(0.0,0.0,-2*tatehaba);
+        draw_armkiban(drawable, gl, glut);
+
+        gl.glTranslated(0.0,0.0,yokohaba/50.0);
+        draw_armkibanmizo(drawable,gl,glut);
+        gl.glTranslated(0.0,0.0,-yokohaba/50.0);
+
+        gl.glTranslated(0.0,armkibantakasa-yokohaba/10.0,0.0);
+        glut.glutSolidCube((float)(yokohaba/10.0));
+        gl.glTranslated(0.0,-armkibantakasa+yokohaba/10.0,0.0);
+
+        gl.glTranslated(0.0,-armkibantakasa+yokohaba/10.0,0.0);
+        glut.glutSolidCube((float)(yokohaba/10.0));
+        gl.glTranslated(0.0,armkibantakasa-yokohaba/10.0,0.0);
+
+        gl.glTranslated(yokohaba/9.0,0.0,-yokohaba/50.0);
+        draw_armmizo(drawable,gl,glut);
+        gl.glTranslated(-yokohaba/9.0,0.0,0.0);
+        //draw_armmizo(drawable,gl,glut);
+        gl.glTranslated(-yokohaba/9.0,0.0,0.0);
+        draw_armmizo(drawable,gl,glut);
+        gl.glTranslated(yokohaba/9.0,0.0,yokohaba/50.0);
+
+        gl.glTranslated(0.0,0.0,yokohaba/40.0);
+        draw_armmizo(drawable,gl,glut);
+        gl.glTranslated(0.0,0.0,-yokohaba/40.0);
+
+        gl.glTranslated(0.0,0.0,-yokohaba/30.0);
+        draw_armkadoububun(drawable,gl,glut);
+        gl.glTranslated(0.0,0.0,yokohaba/30.0);
+
+        gl.glTranslated(0.0,0.0,tatehaba);
+
+
+    }
+
     public void normal(){
-      for(int yid=2;yid<5;yid++){
-        for(int xid=3;xid<6;xid++){
-          hyoujou[yid][xid]=1;
+        inithyoujou();
+        for(int yid=2;yid<5;yid++){
+            for(int xid=3;xid<6;xid++){
+                hyoujou[yid][xid]=1;
+            }
+            for(int xid=15;xid<18;xid++){
+                hyoujou[yid][xid]=1;
+            }
         }
-        for(int xid=15;xid<18;xid++){
-          hyoujou[yid][xid]=1;
-        }
-      }
 
         for(int xid=7;xid<14;xid++){
-          hyoujou[9][xid]=1;
+            hyoujou[9][xid]=1;
         }
 
     }
@@ -316,6 +594,8 @@ public class MyRobot {
     }
 
     public void smile(){
+        inithyoujou();
+
         symmetryhyoujou(2,3,1);
         symmetryhyoujou(3,4,1);
         symmetryhyoujou(3,5,1);
@@ -332,15 +612,85 @@ public class MyRobot {
 
     }
 
-    public void set_hyoujou(){
+    public void set_hyoujou(String char1,int xid,int colorid){
+        if(char1=="a"){
+            hyoujou[1][xid+3]=colorid;
+            hyoujou[2][xid+2]=colorid;
+            hyoujou[2][xid+4]=colorid;
+            for(int i=3;i<10;i++) {
+                hyoujou[i][xid + 1] = colorid;
+                hyoujou[i][xid + 5] = colorid;
+            }
+            for(int i=2;i<5;i++){
+                hyoujou[5][xid+i]=colorid;
+            }
+        }
+        if(char1=="b"){
+            for(int i=2;i<6;i++){
+                hyoujou[1][xid+i]=colorid;
+                hyoujou[4][xid+i]=colorid;
+                hyoujou[9][xid+i]=colorid;
+            }
+            for(int i=2;i<9;i++){
+                if(i!=4) {
+                    hyoujou[i][xid + 1] = colorid;
+                    hyoujou[i][xid + 5] = colorid;
+                }
+            }
 
+        }
+        if(char1=="c"){
+            for(int i=2;i<5;i++){
+                hyoujou[1][xid+i]=colorid;
+                hyoujou[9][xid+i]=colorid;
+            }
+            hyoujou[2][xid+1]=colorid;
+            hyoujou[2][xid+4]=colorid;
+            hyoujou[8][xid+1]=colorid;
+            hyoujou[8][xid+4]=colorid;
+
+            for(int i=3;i<8;i++){
+                hyoujou[i][xid+5]=colorid;
+            }
+
+        }
+        if(char1=="k"){
+            hyoujou[1][xid+1]=colorid;
+            hyoujou[1][xid+2]=colorid;
+            hyoujou[1][xid+5]=colorid;
+            hyoujou[2][xid+2]=colorid;
+            hyoujou[2][xid+5]=colorid;
+            hyoujou[3][xid+3]=colorid;
+            hyoujou[3][xid+5]=colorid;
+            hyoujou[4][xid+3]=colorid;
+            hyoujou[4][xid+5]=colorid;
+            hyoujou[5][xid+4]=colorid;
+            hyoujou[5][xid+5]=colorid;
+            hyoujou[6][xid+3]=colorid;
+            hyoujou[6][xid+5]=colorid;
+            hyoujou[7][xid+2]=colorid;
+            hyoujou[7][xid+5]=colorid;
+            hyoujou[8][xid+2]=colorid;
+            hyoujou[8][xid+5]=colorid;
+            hyoujou[9][xid+1]=colorid;
+            hyoujou[9][xid+5]=colorid;
+        }
+        if(char1=="o"){
+            for(int i=2;i<5;i++) {
+                hyoujou[1][xid+i]=colorid;
+                hyoujou[9][xid+i]=colorid;
+            }
+            for(int i=2;i<9;i++){
+                hyoujou[i][xid+1]=colorid;
+                hyoujou[i][xid+5]=colorid;
+            }
+        }
     }
 
     public void draw_screen(GLAutoDrawable drawable, GL2 gl, GLUT glut){
         float haba=(float)1.8/(float)21.0;
         double xichi=tatehaba-haba;
         double yichi=atamatakasa-haba*2;
-        gl.glTranslated(0.0,yichi,xichi);
         gl.glTranslated(0.0,yichi,xichi);
         for(int yid=0;yid<11;yid++){
           for(int xid=0;xid<21;xid++){
@@ -390,6 +740,10 @@ public class MyRobot {
         gl.glTranslated(0.0,takasa,0.0);
         draw_mune(drawable,gl,glut);
         gl.glTranslated(0.0,-takasa,0.0);
+
+        gl.glTranslated(0.0,takasa+armkibantakasa/3.0,0.0);
+        draw_arm(drawable,gl,glut);
+        gl.glTranslated(0.0,-takasa-armkibantakasa/3.0,0.0);
 
         takasa+=munetakasa;
         takasa+=atamatakasa;

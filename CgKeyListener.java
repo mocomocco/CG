@@ -14,26 +14,26 @@ public class CgKeyListener implements KeyListener {
 		canvas = c;
 		animator = a;
 	}
-	
-	
+
+
 	/*public CgKeyListener(CgCanvas c) {
 		canvas = c;
 	}*/
 
-	
-	
+
+
    	/**
 	 * Called when a key is pressed
 	 */
 	public void keyPressed(KeyEvent e) {/*長押しされた時*/
 		int key = e.getKeyCode();
 		switch (key) {
-		
+
 		// "Q": exit
 		case KeyEvent.VK_Q:
 			System.exit(0);
 			break;
-		
+
 		// "R": reset
 		case KeyEvent.VK_0:
 			MyScene.resetMovement();
@@ -79,14 +79,16 @@ public class CgKeyListener implements KeyListener {
 			break;
 
 		case KeyEvent.VK_C:
-			canvas.close(1);
-			canvas.display();
-
-		case KeyEvent.VK_F:
 			canvas.close(-1);
 			canvas.display();
+      break;
+
+		case KeyEvent.VK_F:
+			canvas.close(1);
+			canvas.display();
+      break;
 		}
-		
+
 	}
 
 	/**

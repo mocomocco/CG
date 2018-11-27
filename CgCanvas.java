@@ -51,6 +51,7 @@ public class CgCanvas extends JPanel {
 
 	public void close(int i){
 		if (drawer == null) return;
-		drawer.er-=i*0.5;
+	   	drawer.er+=0.5*i;
+
 	}
 }

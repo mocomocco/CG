@@ -2,24 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="209fc5ff-7cae-48b2-8ed0-733cba249379" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MyCaterpillarCover.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CgCanvas.class" afterPath="$PROJECT_DIR$/CgCanvas.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CgDrawer.class" afterPath="$PROJECT_DIR$/CgDrawer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CgKeyListener.class" afterPath="$PROJECT_DIR$/CgKeyListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyCaterpillar.class" afterPath="$PROJECT_DIR$/MyCaterpillar.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyCaterpillarCore.class" afterPath="$PROJECT_DIR$/MyCaterpillarCore.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyCaterpillarTire.class" afterPath="$PROJECT_DIR$/MyCaterpillarTire.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyRobot.class" afterPath="$PROJECT_DIR$/MyRobot.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyScene.class" afterPath="$PROJECT_DIR$/MyScene.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CgCanvas.java" afterPath="$PROJECT_DIR$/CgCanvas.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CgDrawer.java" afterPath="$PROJECT_DIR$/CgDrawer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CgKeyListener.java" afterPath="$PROJECT_DIR$/CgKeyListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyCaterpillar.java" afterPath="$PROJECT_DIR$/MyCaterpillar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyCaterpillarCore.java" afterPath="$PROJECT_DIR$/MyCaterpillarCore.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyCaterpillarTire.java" afterPath="$PROJECT_DIR$/MyCaterpillarTire.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyRobot.java" afterPath="$PROJECT_DIR$/MyRobot.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyScene.java" afterPath="$PROJECT_DIR$/MyScene.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -83,10 +68,11 @@
       <file leaf-file-name="MyRobot.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MyRobot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2231">
-              <caret line="150" column="9" lean-forward="false" selection-start-line="150" selection-start-column="9" selection-end-line="150" selection-end-column="9" />
+            <state relative-caret-position="428">
+              <caret line="41" column="38" lean-forward="false" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
+                <marker date="1543115190127" expanded="true" signature="15873:16319" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -121,6 +107,8 @@
       <find>MyScene</find>
       <find>etheta</find>
       <find>sethyou</find>
+      <find>Back</find>
+      <find>back</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -963,10 +951,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MyRobot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2231">
-          <caret line="150" column="9" lean-forward="false" selection-start-line="150" selection-start-column="9" selection-end-line="150" selection-end-column="9" />
+        <state relative-caret-position="428">
+          <caret line="41" column="38" lean-forward="false" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+            <marker date="1543115190127" expanded="true" signature="15873:16319" ph="{...}" />
           </folding>
         </state>
       </provider>

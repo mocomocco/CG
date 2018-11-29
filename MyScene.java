@@ -240,6 +240,10 @@ public class MyScene {
 		}
 	}
 
+  public static void armchange(int mode,int id ){
+     robot.armchange(mode,id);
+  }
+
 	public static void draw(GLAutoDrawable drawable) {
 		if(drawable == null) return;
 

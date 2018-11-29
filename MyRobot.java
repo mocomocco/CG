@@ -13,12 +13,18 @@ public class MyRobot {
     // Colors
     float color[] = { 0.0f, 1.0f, 0.0f, 1.0f };
     float black[] = {0.0f,0.0f,0.0f,1.0f};
+    float gray[] = {0.5f,0.5f,0.5f,1.0f};
     float silver[] = { 0.5f, 0.5f, 0.5f, 1.0f };
     float green[] = {0.0f,1.0f,0.0f,1.0f};
     float white[] = {1.0f,1.0f,1.0f,1.0f};
     float red[] = {1.0f,0.0f,0.0f,1.0f};
     float blue[] = {0.0f,0.0f,1.0f,1.0f};
     float orange[] ={0.5f,0.5f,0.0f,1.0f};
+    float yellow[] ={1.0f,1.0f,0.0f,1.0f};
+    float lightcolor[]={0.0f,1.0f,0.0f,1.0f};
+    float signalcolor1[]=green;
+    float signalcolor2[]=gray;
+    float signalcolor3[]=gray;
 
     double yokohaba=1.0;
     double tatehaba=0.95;
@@ -26,20 +32,29 @@ public class MyRobot {
     double munetakasa=0.20;
     double atamatakasa=0.60;
     double armkibantakasa=0.60;
-    double kadoububunnnotakasa=0.0;
-    double udenemotonagasa=yokohaba/10.0;
-    double udesakinonagasa=yokohaba/10.0;
+    double hidarikadoububunnnotakasa=0.0;
+    double migikadoububunnnotakasa=0.0;
+    double udenemotonagasa=yokohaba/40.0;//yokohaba/5.0;
+    double udesakinagasa=yokohaba/10.0;//yokohaba/5.0;
+    double ninoudenagasa=yokohaba/3.0;
+    double migiudexr=900;//腕根元の回転（体にとっての上下方向）
+    double migiudezr=0;//腕先の回転
+    double migiudeyr=0;//腕根元の回転（体にとっての前後方向）
+    double hidariudexr=900;//腕根元の回転（体にとっての上下方向）
+    double hidariudezr=0;//腕先の回転
+    double hidariudeyr=0;//腕根元の回転（体にとっての前後方向）
 
-    double vertex_foot[][] = {
-            { -0.5, -0.20, -0.5 },
-            {  0.5, -0.20, -0.5 },
-            {  0.5, 0.30, -0.5 },
-            { -0.5, 0.30, -0.5 },
-            { -0.5, -0.20,  0.5 },
-            {  0.5, -0.20,  0.5 },
-            {  0.5, 0.30,  0.5 },
-            { -0.5, 0.30,  0.5 }
+    double vertex_chokuhoutai[][]={
+            { -1.0, -1.0, -1.0 },
+            {  1.0, -1.0, -1.0 },
+            {  1.0, 1.0, -1.0 },
+            { -1.0, 1.0, -1.0 },
+            { -1.0, -1.0,  1.0 },
+            {  1.0, -1.0,  1.0 },
+            {  1.0, 1.0,1.0 },
+            { -1.0, 1.0,1.0 }
     };
+
 
     double vertex_armkibanmizo[][] = {
             { -yokohaba/100.0, -armkibantakasa*0.9, -yokohaba/10.0 },
@@ -86,25 +101,36 @@ public class MyRobot {
     };
 
     double vertex_kadoububunnemoto[][] = {
-            { -yokohaba/10.0,-yokohaba/5.0  -Math.min(udenemotonagasa,yokohaba*2), },
-            {  yokohaba/10.0, -yokohaba/5.0, -Math.min(udenemotonagasa,yokohaba*2) },
-            {  yokohaba/10.0, -yokohaba/5.0 , Math.min(udenemotonagasa,yokohaba*2)},
-            { -yokohaba/10.0, -yokohaba/5.0, Math.min(udenemotonagasa,yokohaba*2) },
-            { -yokohaba/10.0,  yokohaba/5.0 , -Math.min(udenemotonagasa,yokohaba*2)},
-            {  yokohaba/10.0,  yokohaba/5.0, -Math.min(udenemotonagasa,yokohaba*2) },
-            {  yokohaba/10.0,  yokohaba/5.0 , Math.min(udenemotonagasa,yokohaba*2)},
-            { -yokohaba/10.0,  yokohaba/5.0 , Math.min(udenemotonagasa,yokohaba*2)}
+            { -yokohaba/10.0, -yokohaba/10.0 , -udenemotonagasa},
+            {  yokohaba/10.0, -yokohaba/10.0 , -udenemotonagasa},
+            {  yokohaba/10.0, yokohaba/10.0 , -udenemotonagasa},
+            { -yokohaba/10.0, yokohaba/10.0 ,-udenemotonagasa},
+            { -yokohaba/10.0,  -yokohaba/10.0 , udenemotonagasa},
+            {  yokohaba/10.0,  -yokohaba/10.0 , udenemotonagasa},
+            {  yokohaba/10.0,  yokohaba/10.0 , udenemotonagasa},
+            { -yokohaba/10.0,  yokohaba/10.0 , udenemotonagasa}
     };
 
     double vertex_kadoububunsaki[][] = {
-            { -yokohaba/10.0,-yokohaba/5.0  -Math.min(udesakinonagasa,yokohaba*2), },
-            {  yokohaba/10.0, -yokohaba/5.0, -Math.min(udesakinonagasa,yokohaba*2) },
-            {  yokohaba/10.0, -yokohaba/5.0 , Math.min(udesakinonagasa,yokohaba*2)},
-            { -yokohaba/10.0, -yokohaba/5.0, Math.min(udesakinonagasa,yokohaba*2) },
-            { -yokohaba/10.0,  yokohaba/5.0 , -Math.min(udesakinonagasa,yokohaba*2)},
-            {  yokohaba/10.0,  yokohaba/5.0, -Math.min(udesakinonagasa,yokohaba*2) },
-            {  yokohaba/10.0,  yokohaba/5.0 , Math.min(udesakinonagasa,yokohaba*2)},
-            { -yokohaba/10.0,  yokohaba/5.0 , Math.min(udesakinonagasa,yokohaba*2)}
+            { -yokohaba/20.0, -yokohaba/20.0 , -1},
+            {  yokohaba/20.0, -yokohaba/20.0 , -1},
+            {  yokohaba/20.0, yokohaba/20.0 , -1},
+            { -yokohaba/20.0, yokohaba/20.0 ,-1},
+            { -yokohaba/20.0,  -yokohaba/20.0 , 1},
+            {  yokohaba/20.0,  -yokohaba/20.0 , 1},
+            {  yokohaba/20.0,  yokohaba/20.0 , 1},
+            { -yokohaba/20.0,  yokohaba/20.0 , 1}
+    };
+
+    double vertex_ninoude[][] = {
+            { -yokohaba/10.0, -yokohaba/20.0 , -ninoudenagasa},
+            {  yokohaba/10.0, -yokohaba/20.0 , -ninoudenagasa},
+            {  yokohaba/10.0, yokohaba/20.0 , -ninoudenagasa},
+            { -yokohaba/10.0, yokohaba/20.0 ,-ninoudenagasa},
+            { -yokohaba/10.0,  -yokohaba/20.0 , ninoudenagasa},
+            {  yokohaba/10.0,  -yokohaba/20.0 , ninoudenagasa},
+            {  yokohaba/10.0,  yokohaba/20.0 , ninoudenagasa},
+            { -yokohaba/10.0,  yokohaba/20.0 , ninoudenagasa}
     };
 
     double vertex_hara[][] = {
@@ -138,6 +164,17 @@ public class MyRobot {
             {  yokohaba, -atamatakasa,  tatehaba },
             {  yokohaba, atamatakasa,  tatehaba },
             { -yokohaba, atamatakasa,  tatehaba }
+    };
+
+    double vertex_light[][] = {
+            { -yokohaba*0.9, -atamatakasa/10.0, -tatehaba/40.0 },
+            {  yokohaba*0.9, -atamatakasa/10.0, -tatehaba/40.0 },
+            {  yokohaba*0.9, atamatakasa/10.0, -tatehaba/40.0 },
+            { -yokohaba*0.9, atamatakasa/10.0, -tatehaba/40.0 },
+            { -yokohaba*0.9, -atamatakasa/10.0,  tatehaba/40.0 },
+            {  yokohaba*0.9, -atamatakasa/10.0,  tatehaba/40.0 },
+            {  yokohaba*0.9, atamatakasa/10.0,  tatehaba/40.0 },
+            { -yokohaba*0.9, atamatakasa/10.0,  tatehaba/40.0 }
     };
 
     // IDs of vertices of faces
@@ -221,6 +258,8 @@ public class MyRobot {
 
     }
 
+
+
     public void setSyokix(double t) {
         syokix = t;
         transformx=syokix;
@@ -248,17 +287,30 @@ public class MyRobot {
     public void setdz(double t) {
         dz=t;
     }
+    public void set_lightcolor(float[] color){
+      for(int i=0;i<3;i++){
+            lightcolor[i]=color[i];
+       }
+    }
 
     public void setvmae(double t) {
         vmae=t;
         if(t<0) {
             smile();
+            set_lightcolor(green);
+            signalcolor1=green;
+            signalcolor2=gray;
+            signalcolor3=gray;
         }else{
             inithyoujou();
             set_hyoujou("b", 15, 1);
             set_hyoujou("a", 10, 2);
             set_hyoujou("c", 5, 1);
             set_hyoujou("k", 0, 2);
+            set_lightcolor(red);
+            signalcolor1=gray;
+            signalcolor2=yellow;
+            signalcolor3=gray;
         }
     }
     /**
@@ -270,7 +322,68 @@ public class MyRobot {
         //System.out.println(Math.toRadians(dr*0.1) +" " + Math.cos(Math.toRadians(dr*0.1)) +" "+ Math.sin(Math.toRadians(dr*0.1)));
     }
 
+  public void armchange(int mode, int id){
+     if(mode==0){
+      if(id==1){
+        if((migikadoububunnnotakasa<armkibantakasa*0.7)){
+         migikadoububunnnotakasa+=yokohaba*id/20.0;
+        }
+      }else{
+        if((migikadoububunnnotakasa>-armkibantakasa*0.7) ){
+         migikadoububunnnotakasa+=yokohaba*id/20.0;
+        }
+      }
+     }
+     if(mode==1){
+      if(id==1){
+        if((hidarikadoububunnnotakasa<armkibantakasa*0.7)){
+         hidarikadoububunnnotakasa+=yokohaba*id/20.0;
+        }
+      }else{
+        if((hidarikadoububunnnotakasa>-armkibantakasa*0.7) ){
+         hidarikadoububunnnotakasa+=yokohaba*id/20.0;
+        }
+      }
+     }
+     if(mode==2){
+      if(id==1){
+        if(migiudexr<900){
+        migiudexr+=20;
+        hidariudexr+=20;
+        }
+      }else{
+        if(migiudeyr<900){
+        migiudeyr+=100;
+        hidariudeyr+=100;
+        }
+      }
+     }
+     if(mode==3){
+      if(id==1){
+          if(hidariudexr>=-850){
+	        hidariudexr-=20;
+          migiudexr-=20;
+	        }
+      }else{
+          if(hidariudeyr>=-850){
+	        hidariudeyr-=20;
+          migiudeyr-=20;
+	        }
+      }
+     }
+     if(mode==4){
+      if(id==1){
+         if(udesakinagasa<yokohaba*2.0){
+         udesakinagasa+=id*0.1;
+         }
+      }else{
+         if(udesakinagasa>yokohaba/10.0+yokohaba/10.0){
+         udesakinagasa+=id*0.1;
+          }
+      }
+     }
 
+   }
     /**
      * Reset the movement (reset the rotation angle)
      */
@@ -279,6 +392,15 @@ public class MyRobot {
         dy=0;
         dz=0;
         dr=0;
+        migiudexr=900;
+        migiudeyr=0;
+        migiudezr=0;
+        hidariudexr=900;
+        hidariudeyr=0;
+        hidariudezr=0;
+        migikadoububunnnotakasa=0;
+        hidarikadoububunnnotakasa=0;
+        udesakinagasa=yokohaba/10.0;
         transformx=syokix;
         transformy=syokiy;
         transformz=syokiz;
@@ -295,25 +417,31 @@ public class MyRobot {
     }
     double[] tyoutenlist = {0,0,0};
 
-    public void draw_foot(GLAutoDrawable drawable, GL2 gl, GLUT glut){
+
+    public void draw_chokuhoutai(GLAutoDrawable drawable, GL2 gl, GLUT glut,double xhaba,double yhaba,double zhaba,float[] color,float[] hansha){
         for (int j = 0; j < 6; ++j) {//面を一個作る
             //ポリゴンの描写を始めるよ
             gl.glBegin(GL2.GL_POLYGON);
             //変数 normal[j] に設定されている 3 個の実数を、j 番目の四角形の法線ベクトルとして指定するよ
             gl.glNormal3dv(normal[j], 0);
-            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
-            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, white, 0);
+            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, hansha, 0);
+            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, color, 0);
             for (int i = 0; i < 4; ++i) {//頂点を決める
                 double[] tyoutenlist={0,0,0};
-                tyoutenlist[0]=vertex_foot[face[j][i]][0];
-                tyoutenlist[1]=vertex_foot[face[j][i]][1];
-                tyoutenlist[2]=vertex_foot[face[j][i]][2];
+                tyoutenlist[0]=vertex_chokuhoutai[face[j][i]][0]*xhaba;
+                tyoutenlist[1]=vertex_chokuhoutai[face[j][i]][1]*yhaba;
+                tyoutenlist[2]=vertex_chokuhoutai[face[j][i]][2]*zhaba;
                 gl.glVertex3dv(tyoutenlist, 0);
             }
             gl.glEnd();
         }
 
     }
+
+    public void draw_foot(GLAutoDrawable drawable, GL2 gl, GLUT glut){
+      draw_chokuhoutai(drawable,gl,glut,0.5,0.20,0.5,white,silver);
+    }
+
     public void draw_hara(GLAutoDrawable drawable, GL2 gl, GLUT glut){
         for (int j = 0; j < 6; ++j) {//面を一個作る
             //ポリゴンの描写を始めるよ
@@ -333,6 +461,7 @@ public class MyRobot {
         }
 
     }
+
     public void draw_mune(GLAutoDrawable drawable, GL2 gl, GLUT glut){
         for (int j = 0; j < 6; ++j) {//面を一個作る
             //ポリゴンの描写を始めるよ
@@ -412,8 +541,8 @@ public class MyRobot {
 
     }
     public void draw_armkadoububun(GLAutoDrawable drawable, GL2 gl, GLUT glut){
-        //      if((kadoububunnnotakasa < armkibantakasa*0.9) && (  kadoububunnnotakasa > -armkibantakasa*0.9)){
-        gl.glTranslated(0.0,kadoububunnnotakasa,0.0);
+      //if((kadoububunnnotakasa < armkibantakasa*0.9) && (  kadoububunnnotakasa > -armkibantakasa*0.9)){
+
                 for (int j = 0; j < 6; ++j) {//面を一個作る
 				            //ポリゴンの描写を始めるよ
 				            gl.glBegin(GL2.GL_POLYGON);
@@ -430,13 +559,13 @@ public class MyRobot {
 				            }
 				            gl.glEnd();
 				        }
-        gl.glTranslated(0.0,-kadoububunnnotakasa,0.0);
 
+      //}
     }
 
     public void draw_armkadoububunnemoto(GLAutoDrawable drawable, GL2 gl, GLUT glut){
       //if((kadoububunnnotakasa < armkibantakasa*0.9) && (  kadoububunnnotakasa > -armkibantakasa*0.9)){
-        gl.glTranslated(0.0,kadoububunnnotakasa,0.0);
+        //gl.glTranslated(0.0,kadoububunnnotakasa,0.0);
                 for (int j = 0; j < 6; ++j) {//面を一個作る
 				            //ポリゴンの描写を始めるよ
 				            gl.glBegin(GL2.GL_POLYGON);
@@ -453,13 +582,13 @@ public class MyRobot {
 				            }
 				            gl.glEnd();
 				        }
-        gl.glTranslated(0.0,-kadoububunnnotakasa,0.0);
-
+        //gl.glTranslated(0.0,-kadoububunnnotakasa,0.0);
+      //}
     }
 
     public void draw_armkadoububunsaki(GLAutoDrawable drawable, GL2 gl, GLUT glut){
       //if((kadoububunnnotakasa < armkibantakasa*0.9) && (  kadoububunnnotakasa > -armkibantakasa*0.9)){
-        gl.glTranslated(0.0,kadoububunnnotakasa,0.0);
+        //gl.glTranslated(0.0,kadoububunnnotakasa,0.0);
                 for (int j = 0; j < 6; ++j) {//面を一個作る
 				            //ポリゴンの描写を始めるよ
 				            gl.glBegin(GL2.GL_POLYGON);
@@ -471,14 +600,38 @@ public class MyRobot {
 				                double[] tyoutenlist={0,0,0};
 				                tyoutenlist[0]=vertex_kadoububunsaki[face[j][i]][0];
 				                tyoutenlist[1]=vertex_kadoububunsaki[face[j][i]][1];
-				                tyoutenlist[2]=vertex_kadoububunsaki[face[j][i]][2];
+				                tyoutenlist[2]=vertex_kadoububunsaki[face[j][i]][2]*udesakinagasa;
 				                gl.glVertex3dv(tyoutenlist, 0);
 				            }
 				            gl.glEnd();
 				        }
-        gl.glTranslated(0.0,-kadoububunnnotakasa,0.0);
-
+      //  gl.glTranslated(0.0,-kadoububunnnotakasa,0.0);
+      //}
     }
+
+    public void draw_ninoude(GLAutoDrawable drawable, GL2 gl, GLUT glut){
+      //if((kadoububunnnotakasa < armkibantakasa*0.9) && (  kadoububunnnotakasa > -armkibantakasa*0.9)){
+        //gl.glTranslated(0.0,kadoububunnnotakasa,0.0);
+                for (int j = 0; j < 6; ++j) {//面を一個作る
+				            //ポリゴンの描写を始めるよ
+				            gl.glBegin(GL2.GL_POLYGON);
+				            //変数 normal[j] に設定されている 3 個の実数を、j 番目の四角形の法線ベクトルとして指定するよ
+				            gl.glNormal3dv(normal[j], 0);
+				            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
+				            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, white, 0);
+				            for (int i = 0; i < 4; ++i) {//頂点を決める
+				                double[] tyoutenlist={0,0,0};
+				                tyoutenlist[0]=vertex_ninoude[face[j][i]][0];
+				                tyoutenlist[1]=vertex_ninoude[face[j][i]][1];
+				                tyoutenlist[2]=vertex_ninoude[face[j][i]][2];
+				                gl.glVertex3dv(tyoutenlist, 0);
+				            }
+				            gl.glEnd();
+				        }
+        //gl.glTranslated(0.0,-kadoububunnnotakasa,0.0);
+      //}
+    }
+
 
     public void draw_armmizo(GLAutoDrawable drawable, GL2 gl, GLUT glut){
         for (int j = 0; j < 6; ++j) {//面を一個作る
@@ -497,6 +650,67 @@ public class MyRobot {
             }
             gl.glEnd();
         }
+    }
+
+    public void draw_armkadou(GLAutoDrawable drawable, GL2 gl, GLUT glut,int isleft){
+         double idou1=-yokohaba/30.0;
+         if (isleft==1){idou1=-idou1;}
+         gl.glTranslated(0.0,0.0,idou1);
+         double kadoububunnnotakasa=migikadoububunnnotakasa;
+         if(isleft==1){kadoububunnnotakasa=hidarikadoububunnnotakasa;}
+         gl.glTranslated(0.0,kadoububunnnotakasa,0.0);
+         draw_armkadoububun(drawable,gl,glut);
+         double idou2=-Math.min(udenemotonagasa,yokohaba*2);
+         if (isleft==1){idou2=-idou2;}
+         gl.glTranslated(0.0,0.0,idou2);
+         double idou3= idou2 -yokohaba/10.0;
+         if (isleft==1){idou3=-idou3;}
+         draw_armkadoububunnemoto(drawable,gl,glut);
+         gl.glTranslated(0.0,0.0,idou3);
+         draw_armkadoububunsaki(drawable,gl,glut);
+         double idou4=-udesakinagasa-0.05;
+         if (isleft==1){idou4=-idou4;}
+         gl.glTranslated(0.0,0.0,idou4);
+
+             gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, gray, 0);
+             gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, gray, 0);
+         glut.glutSolidSphere(yokohaba/5.0, 30, 20);
+         double udexr=(double)(migiudexr*-0.1);
+         double udeyr=(double)(migiudeyr*-0.1);
+         double udezr=(double)(migiudezr*-0.1);
+         if (isleft==1){
+           udexr=(double)(hidariudexr*0.1);
+           udeyr=(double)(hidariudeyr*0.1);
+           udezr=(double)(hidariudezr*0.1);
+         }
+
+         gl.glRotated(udexr,1.0,0.0,0.0);
+         gl.glRotated(udeyr,0.0,1.0,0.0);
+         gl.glRotated(udezr,0.0,0.0,1.0);
+         double idou5=-ninoudenagasa-yokohaba/16.0;
+         if(isleft==1){idou5=-idou5;}
+         gl.glTranslated(0.0,0.0,idou5);
+
+         draw_ninoude(drawable,gl,glut);
+         double idou6=-ninoudenagasa-yokohaba/4.0;
+         if(isleft==1){idou6=-idou6;}
+         gl.glTranslated(0.0,0.0,idou6);
+         gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, gray, 0);
+         gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE,white, 0);
+         glut.glutSolidCube((float)(yokohaba/2.0));
+         gl.glTranslated(0.0,0.0,-idou6);
+         gl.glTranslated(0.0,0.0,-idou5);
+
+
+
+         gl.glRotated(-udezr,0.0,0.0,1.0);
+         gl.glRotated(-udeyr,0.0,1.0,0.0);
+         gl.glRotated(-udexr,1.0,0.0,0.0);
+         gl.glTranslated(0.0,0.0,-idou4);
+         gl.glTranslated(0.0,0.0,-idou3);
+         gl.glTranslated(0.0,0.0,-idou2);
+        gl.glTranslated(0.0,-kadoububunnnotakasa,0.0);
+         gl.glTranslated(0.0,0.0,-idou1);
     }
 
     public void draw_arm(GLAutoDrawable drawable, GL2 gl, GLUT glut){
@@ -523,17 +737,9 @@ public class MyRobot {
         draw_armmizo(drawable,gl,glut);
         gl.glTranslated(yokohaba/9.0,0.0,-yokohaba/50.0);
 
-        gl.glTranslated(0.0,0.0,yokohaba/30.0);
-        draw_armkadoububun(drawable,gl,glut);
-        gl.glTranslated(0.0,0.0,yokohaba/10.0+Math.min(udenemotonagasa,yokohaba*2));
-        draw_armkadoububunnemoto(drawable,gl,glut);
-        gl.glTranslated(0.0,0.0,yokohaba/10.0+Math.min(udenemotonagasa,yokohaba*2));
-        //draw_armkadoububunsaki(drawable,gl,glut);
-        gl.glTranslated(0.0,0.0,-yokohaba/10.0-Math.min(udenemotonagasa,yokohaba*2));
-        gl.glTranslated(0.0,0.0,-yokohaba/10.0-Math.min(udenemotonagasa,yokohaba*2));
-        gl.glTranslated(0.0,0.0,-yokohaba/30.0);
+        draw_armkadou(drawable,gl,glut,1);
 
-        //可動部分
+        //右
 
         gl.glTranslated(0.0,0.0,-2*tatehaba);
         draw_armkiban(drawable, gl, glut);
@@ -562,11 +768,11 @@ public class MyRobot {
         draw_armmizo(drawable,gl,glut);
         gl.glTranslated(0.0,0.0,-yokohaba/40.0);
 
-        gl.glTranslated(0.0,0.0,-yokohaba/30.0);
-        draw_armkadoububun(drawable,gl,glut);
-        gl.glTranslated(0.0,0.0,yokohaba/30.0);
+        draw_armkadou(drawable,gl,glut,0);
 
         gl.glTranslated(0.0,0.0,tatehaba);
+
+
 
 
     }
@@ -712,6 +918,45 @@ public class MyRobot {
         }
         gl.glTranslated(0.0,-yichi,-xichi);
     }
+
+    public void draw_light(GLAutoDrawable drawable, GL2 gl, GLUT glut,float[] signalcolor){
+
+        for (int j = 0; j < 6; ++j) {//面を一個作る
+            //ポリゴンの描写を始めるよ
+            gl.glBegin(GL2.GL_POLYGON);
+            //変数 normal[j] に設定されている 3 個の実数を、j 番目の四角形の法線ベクトルとして指定するよ
+            gl.glNormal3dv(normal[j], 0);
+            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
+            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, black, 0);
+            for (int i = 0; i < 4; ++i) {//頂点を決める
+                double[] tyoutenlist={0,0,0};
+                tyoutenlist[0]=vertex_light[face[j][i]][0];
+                tyoutenlist[1]=vertex_light[face[j][i]][1];
+                tyoutenlist[2]=vertex_light[face[j][i]][2];
+                gl.glVertex3dv(tyoutenlist, 0);
+            }
+            gl.glEnd();
+        }
+         gl.glTranslated(0.0,0.0,tatehaba/50.0);
+        for (int j = 0; j < 6; ++j) {//面を一個作る
+            //ポリゴンの描写を始めるよ
+            gl.glBegin(GL2.GL_POLYGON);
+            //変数 normal[j] に設定されている 3 個の実数を、j 番目の四角形の法線ベクトルとして指定するよ
+            gl.glNormal3dv(normal[j], 0);
+            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, silver, 0);
+            gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, signalcolor, 0);
+            for (int i = 0; i < 4; ++i) {//頂点を決める
+                double[] tyoutenlist={0,0,0};
+                tyoutenlist[0]=vertex_light[face[j][i]][0];
+                tyoutenlist[1]=vertex_light[face[j][i]][1];
+                tyoutenlist[2]=vertex_light[face[j][i]][2];
+                gl.glVertex3dv(tyoutenlist, 0);
+            }
+            gl.glEnd();
+        }
+         gl.glTranslated(0.0,0.0,-tatehaba/50.0);
+    }
+
     public void draw(GLAutoDrawable drawable) {
         GL2 gl = drawable.getGL().getGL2();
         GLUT glut = new GLUT();
@@ -754,6 +999,31 @@ public class MyRobot {
         draw_screen(drawable,gl,glut);
         gl.glTranslated(yokohaba,0.0,0.0);
         gl.glTranslated(0.0,-takasa,0.0);
+
+        gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, gray, 0);
+        gl.glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE, lightcolor, 0);
+        takasa+=atamatakasa;
+        gl.glTranslated(-yokohaba/2.0,takasa,-tatehaba/2.0);
+        glut.glutSolidSphere(yokohaba/3.0,10,20);
+        gl.glTranslated(yokohaba/2.0,-takasa,tatehaba/2.0);
+
+        gl.glTranslated(0.0,takasa,tatehaba);
+        gl.glTranslated(0.0,-atamatakasa/5.0,0.0);
+        draw_light(drawable,gl,glut,signalcolor1);
+        gl.glTranslated(0.0,atamatakasa/5.0,0.0);
+        gl.glTranslated(0.0,-takasa,-tatehaba);
+
+        gl.glTranslated(0.0,takasa,tatehaba);
+  			gl.glTranslated(0.0,-atamatakasa/2.0,0.0);
+  			draw_light(drawable,gl,glut,signalcolor2);
+  			gl.glTranslated(0.0,atamatakasa/2.0,0.0);
+  			gl.glTranslated(0.0,-takasa,-tatehaba);
+
+        gl.glTranslated(0.0,takasa,tatehaba);
+  			gl.glTranslated(0.0,-atamatakasa*0.8,0.0);
+  			draw_light(drawable,gl,glut,signalcolor3);
+  			gl.glTranslated(0.0,atamatakasa*0.8,0.0);
+  			gl.glTranslated(0.0,-takasa,-tatehaba);
         calculateMovement();
     }
 

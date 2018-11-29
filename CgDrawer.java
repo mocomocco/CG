@@ -52,7 +52,7 @@ public class CgDrawer implements GLEventListener {
         gl.glLightfv(GL2.GL_LIGHT1, GL2.GL_DIFFUSE, silver, 0);
 
         // Specification of background color背景色設定(R,G,B,_)
-        gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        gl.glClearColor(0.8f, 0.8f,0.8f, 1.0f);
 
 	}
 

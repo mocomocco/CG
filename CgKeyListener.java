@@ -35,11 +35,59 @@ public class CgKeyListener implements KeyListener {
 			break;
 
 		// "R": reset
-		case KeyEvent.VK_0:
+		case KeyEvent.VK_SHIFT:
 			MyScene.resetMovement();
 			canvas.display();
 			break;
 
+		case KeyEvent.VK_1://右手をあげる
+      MyScene.armchange(0,1);
+			canvas.display();
+      break;
+
+    case KeyEvent.VK_2://右手を下げる
+      MyScene.armchange(0,-1);
+			canvas.display();
+      break;
+
+		case KeyEvent.VK_3://左手をあげる
+      MyScene.armchange(1,1);
+			canvas.display();
+      break;
+
+		case KeyEvent.VK_4://左手を下げる
+      MyScene.armchange(1,-1);
+			canvas.display();
+      break;
+
+		case KeyEvent.VK_5://右手伸ばす
+      MyScene.armchange(4,1);
+			canvas.display();
+      break;
+
+		case KeyEvent.VK_6://左手伸ばす
+      MyScene.armchange(4,-1);
+			canvas.display();
+
+		case KeyEvent.VK_7://右手のなんか回す
+      MyScene.armchange(2,2);
+			canvas.display();
+      break;
+
+		case KeyEvent.VK_8://左手のなんか回す
+      MyScene.armchange(3,2);
+			canvas.display();
+      break;
+
+		case KeyEvent.VK_9://右手のなんか回す
+      MyScene.armchange(2,1);
+			canvas.display();
+      break;
+
+		case KeyEvent.VK_0://左手のなんか回す
+      MyScene.armchange(3,1);
+			canvas.display();
+      break;
 
 		// "b": turn
 		case KeyEvent.VK_B:

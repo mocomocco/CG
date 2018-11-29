@@ -139,9 +139,11 @@ public class MyCaterpillar {
 
     public void Back() {
         if(isBack==0){
-            isBack=1;
+            if(vmae>0){
+            isBack=1;}
         }else{
-            isBack=0;
+            if(vmae<0){
+            isBack=0;}
         }
     }
 
